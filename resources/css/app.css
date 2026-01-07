@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+.tab-content {
+    display: none;
+}
+
+#tab-airing:checked ~ .content-airing,
+#tab-completed:checked ~ .content-completed,
+#tab-movies:checked ~ .content-movies {
+    display: grid;
+}
+
+#tab-airing:checked ~ .tabs label[for="tab-airing"],
+#tab-completed:checked ~ .tabs label[for="tab-completed"],
+#tab-movies:checked ~ .tabs label[for="tab-movies"] {
+    background-color: #232948;
+    border-color: #1337ec;
+    color: white;
+}
+
+.tabs-input:checked ~ .tabs-label {
+    @apply px-3 py-1.5 rounded-lg bg-primary text-white text-xs font-medium border border-primary hover:opacity-90 transition-colors outline-none;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111422;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #232948;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #323b67;
+}
+.material-symbols-outlined {
+    display: flex;
+    align-items: center;
+    line-height: unset;
+}
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    /* Konfigurasi Warna */
+    --color-primary: #1337ec;
+    --color-primary-hover: #0f2cb8;
+    --color-background-light: #f6f6f8;
+    --color-background-dark: #101322;
+    --color-surface-dark: #1a1d2d;
+    --color-surface-light: #161a2c;
+    --color-surface-hover: #232948;
+    --color-surface-border: #232948;
+    --color-card-dark: #1a1d2d;
+    --color-border-dark: #232948;
+
+    --text-xxs: 10px;
+    --text-primary: #ffffff;
+    --text-secondary: #929bc9;
+    --text-muted: #5a6288;
+
+    /* Konfigurasi Font */
+    --font-display: "Spline Sans", ui-sans-serif, system-ui, sans-serif;
+
+    /* Konfigurasi Border Radius */
+    --radius-default: 0.25rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+}
