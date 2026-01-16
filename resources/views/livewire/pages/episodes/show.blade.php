@@ -32,9 +32,9 @@
                                 </a>
                                 <span class="text-text-secondary">•</span>
                                 <span
-                                    class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
+                                    class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() ?? '' }}</span>
                                 <span
-                                    class="px-2 py-0.5 rounded bg-surface-border text-text-secondary text-[10px] font-bold uppercase tracking-wider ">{{ $anime->status }}</span>
+                                    class="px-2 py-0.5 rounded bg-surface-border text-text-secondary text-xxs font-bold uppercase tracking-wider ">{{ $anime->status }}</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-3 w-full md:w-auto shrink-0">
