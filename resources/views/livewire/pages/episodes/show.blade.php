@@ -30,9 +30,11 @@
                                     href="{{ route('pages.animes.show', $anime->slug) }}">
                                     {{ $anime->title }}
                                 </a>
-                                <span class="text-text-secondary">•</span>
-                                <span
-                                    class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() ?? '' }}</span>
+                                @if ($episode->release_date)
+                                    <span class="text-text-secondary text-xs">•</span>
+                                    <span
+                                        class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
+                                @endif
                                 <span
                                     class="px-2 py-0.5 rounded bg-surface-border text-text-secondary text-xxs font-bold uppercase tracking-wider ">{{ $anime->status }}</span>
                             </div>
@@ -210,8 +212,10 @@
                                     ])>
                                         {{ $allEpisode->title }}
                                     </h4>
-                                    <span
-                                        class="text-text-secondary text-xs">{{ $allEpisode->release_date->diffForHumans() }}</span>
+                                    @if ($allEpisode->release_date)
+                                        <span
+                                            class="text-text-secondary text-xs">{{ $allEpisode->release_date->diffForHumans() }}</span>
+                                    @endif
                                 </div>
                             </a>
                         @endforeach

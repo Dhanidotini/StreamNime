@@ -113,34 +113,37 @@
                     </div>
                     <div class="flex flex-col gap-3">
                         @foreach ($latestEpisodes as $episode)
-                        <a class="group flex gap-4 bg-[#111422] p-2 rounded-lg border border-surface-dark hover:border-primary/50 transition-all items-center"
-                            href="{{ route('pages.episodes.show', [$anime->slug, $episode->number]) }}">
-                            <div class="relative w-32 aspect-video shrink-0 rounded overflow-hidden bg-surface-darker">
-                                <img alt="Ep 1 Thumbnail"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    src="{{ $episode->thumbnail_url }}" />
+                            <a class="group flex gap-4 bg-[#111422] p-2 rounded-lg border border-surface-dark hover:border-primary/50 transition-all items-center"
+                                href="{{ route('pages.episodes.show', [$anime->slug, $episode->number]) }}">
                                 <div
-                                    class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span class="material-symbols-outlined text-white text-[24px]">play_arrow</span>
+                                    class="relative w-32 aspect-video shrink-0 rounded overflow-hidden bg-surface-darker">
+                                    <img alt="Ep 1 Thumbnail"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                        src="{{ $episode->thumbnail_url }}" />
+                                    <div
+                                        class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span class="material-symbols-outlined text-white text-[24px]">play_arrow</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="text-primary text-xs font-bold">Ep {{$episode->number}}</span>
-
-                                    {{-- TODO: Adding release_date in episode --}}
-                                    <span class="text-text-secondary text-xs">•</span>
-                                    <span class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() ?? '' }}</span>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-primary text-xs font-bold">Ep {{ $episode->number }}</span>
+                                        @if ($episode->release_date)
+                                            <span class="text-text-secondary text-xs">•</span>
+                                            <span
+                                                class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
+                                        @endif
+                                    </div>
+                                    <h4
+                                        class="text-white text-sm font-medium truncate group-hover:text-primary transition-colors">
+                                        {{ $episode->title }}
+                                    </h4>
                                 </div>
-                                <h4 class="text-white text-sm font-medium truncate group-hover:text-primary transition-colors">
-                                {{ $episode->title }}
-                                </h4>
-                            </div>
-                            <div class="hidden sm:flex px-4 md:px-10">
-                                <span
-                                    class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors">download</span>
-                            </div>
-                        </a>
+                                <div class="hidden sm:flex px-4 md:px-10">
+                                    <span
+                                        class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors">download</span>
+                                </div>
+                            </a>
                         @endforeach
                     </div>
                     <button
@@ -190,7 +193,8 @@
                         </div>
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
                             <span class="text-text-secondary text-sm">Aired</span>
-                            <span class="text-white text-sm font-medium">{{ $anime->release_date->diffForHumans() }}</span>
+                            <span
+                                class="text-white text-sm font-medium">{{ $anime->release_date->diffForHumans() }}</span>
                         </div>
                         {{-- <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
                             <span class="text-text-secondary text-sm">Producers</span>
