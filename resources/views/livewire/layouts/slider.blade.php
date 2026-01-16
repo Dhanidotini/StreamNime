@@ -31,7 +31,7 @@
                        {{ str($trendingAnime->synopsis)->stripTags() }}
                     </div>
                     <div class="flex flex-wrap gap-4 h-12">
-                        <livewire:partials.link title="Watch Now" logo="play_arrow" :href="route('pages.episodes.show', [$trendingAnime->slug, $trendingAnime->episodes->first()->number])" />
+                        <livewire:partials.link title="Watch Now" logo="play_arrow" :href="route('pages.episodes.show', [$trendingAnime->slug, $trendingAnime->episodes->first()->number ?? ''])" />
                         <livewire:partials.link title="View Details" logo="info" :href="route('pages.animes.show', $trendingAnime->slug)" class="bg-white/10 text-white backdrop-blur-md hover:bg-white/20">
                     </div>
                 </div>

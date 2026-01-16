@@ -12,7 +12,8 @@ Route::get('/', Home::class)
 Route::get('/animes/{anime:slug}', Animes\Show::class)
     ->name('pages.animes.show');
 
-Route::get('/animes/{anime:slug}/episode/{episode:number}', Episodes\Show::class)
+Route::redirect('/animes/{anime:slug}/episode', '/animes/{anime:slug}');
+Route::get('/animes/{anime:slug}/episode/{episode:number?}', Episodes\Show::class)
     ->name('pages.episodes.show');
 
 Route::get('/anime-list', Animelist::class)

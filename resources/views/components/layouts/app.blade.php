@@ -15,6 +15,7 @@
         rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    @livewireStyles
     <style>
         [x-cloack] {
             display: none !important;
@@ -24,6 +25,8 @@
 
 <body x-data="{ showSearch: false }" class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased selection:bg-primary selection:text-white">
     {{ $slot }}
+
+    @livewireScripts
 </body>
 
 </html>

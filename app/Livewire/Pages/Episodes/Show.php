@@ -11,7 +11,7 @@ use Livewire\Livewire as LivewireAlias;
 class Show extends Component
 {
     public Anime $anime;
-    public Episode $episode;
+    public ?Episode $episode;
     public $firstNumber;
     public function firstNumber()
     {
