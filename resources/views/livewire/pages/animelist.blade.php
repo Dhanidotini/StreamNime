@@ -9,7 +9,7 @@
                 class="text-slate-900 dark:text-white text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight max-w-3xl">
                 Temukan Anime Favoritmu
             </h1>
-            <p class="text-slate-500 dark:text-text-secondary text-base sm:text-lg font-normal max-w-2xl">
+            <p class="text-slate-500 dark:text-secondary text-base sm:text-lg font-normal max-w-2xl">
                 Cari dari ribuan judul anime, mulai dari hits klasik hingga simulcast terbaru dengan kualitas
                 terbaik.
             </p>
@@ -17,11 +17,11 @@
                 <div
                     class="flex w-full items-stretch rounded-xl shadow-lg shadow-primary/10 transition-all focus-within:shadow-primary/20">
                     <div
-                        class="flex items-center justify-center pl-4 rounded-l-xl bg-white dark:bg-card-dark border border-r-0 border-none text-slate-400 dark:text-text-secondary">
+                        class="flex items-center justify-center pl-4 rounded-l-xl bg-white dark:bg-card-dark border border-r-0 border-none text-slate-400 dark:text-secondary">
                         <span class="material-symbols-outlined">search</span>
                     </div>
                     <input type="text" wire:model.live="search"
-                        class="flex-1 bg-white dark:bg-card-dark outline-0 border-l-0 border-r-0 border-none border-y text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-text-secondary focus:ring-0 active:ring-0 focus:border-gray-200 dark:focus:border-border-dark h-14 px-3 text-base"
+                        class="flex-1 bg-white dark:bg-card-dark outline-0 border-l-0 border-r-0 border-none border-y text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-secondary focus:ring-0 active:ring-0 focus:border-gray-200 dark:focus:border-border-dark h-14 px-3 text-base"
                         placeholder="Cari judul anime, contoh: One Piece..." />
                     <button type="submit"
                         class="bg-primary hover:bg-primary-hover text-white font-bold px-6 sm:px-8 rounded-r-xl transition-colors flex items-center gap-2">
@@ -53,7 +53,7 @@
                             <span class="material-symbols-outlined text-primary">tune</span> Filter
                         </h3>
                         <button wire:click="clearFilter" type="button"
-                            class="text-xs font-bold text-slate-500 hover:text-primary dark:text-text-secondary dark:hover:text-white transition-colors">
+                            class="text-xs font-bold text-slate-500 hover:text-primary dark:text-secondary dark:hover:text-white transition-colors">
                             Reset Semua
                         </button>
                     </div>
@@ -179,14 +179,14 @@
         </aside>
         <main class="flex-1">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                <p class="text-slate-600 dark:text-text-secondary text-sm font-medium">
+                <p class="text-slate-600 dark:text-secondary text-sm font-medium">
                     Menampilkan <span
                         class="text-slate-900 dark:text-white font-bold">{{ $paginateAnime->count() }}</span> dari
                     <span class="text-slate-900 dark:text-white font-bold">{{ $paginateAnime->total() }}</span> anime
                 </p>
                 <div class="flex items-center gap-3">
                     <label
-                        class="text-sm font-medium text-slate-600 dark:text-text-secondary whitespace-nowrap">Urutkan:</label>
+                        class="text-sm font-medium text-slate-600 dark:text-secondary whitespace-nowrap">Urutkan:</label>
                     <select wire:model.lazy='sorterFilter'
                         class="bg-white dark:bg-card-dark border border-gray-300 dark:border-border-dark text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
                         <option value="title_asc">Judul A-Z</option>
@@ -230,7 +230,7 @@
                                 class="text-slate-900 dark:text-white font-bold text-sm leading-tight line-clamp-1 group-hover:text-primary transition-colors">
                                 {{ $anime->title }}
                             </h3>
-                            <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-text-secondary">
+                            <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-secondary">
                                 <span>{{ $anime->status->name }}</span>
                                 <span class="w-1 h-1 rounded-full bg-slate-400 dark:bg-gray-600"></span>
                                 <span>{{ $anime->release_date->year }}</span>
@@ -251,7 +251,7 @@
                 <nav role="navigation" class="flex items-center gap-2">
                     @if (!$paginateAnime->onFirstPage())
                         <button wire:click="previousPage('{{ $paginateAnime->getPageName() }}')"
-                            class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-300 dark:border-border-dark text-slate-500 dark:text-text-secondary hover:bg-gray-100 dark:hover:bg-[#2f365f] disabled:opacity-50">
+                            class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-300 dark:border-border-dark text-slate-500 dark:text-secondary hover:bg-gray-100 dark:hover:bg-[#2f365f] disabled:opacity-50">
                             <span class="material-symbols-outlined text-sm">chevron_left</span>
                         </button>
                     @endif
@@ -265,7 +265,7 @@
                     @endforeach
                     @if ($paginateAnime->hasMorePages())
                         <button wire:click="nextPage('{{ $paginateAnime->getPageName() }}')"
-                            class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-300 dark:border-border-dark text-slate-500 dark:text-text-secondary hover:bg-gray-100 dark:hover:bg-[#2f365f]">
+                            class="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-300 dark:border-border-dark text-slate-500 dark:text-secondary hover:bg-gray-100 dark:hover:bg-[#2f365f]">
                             <span class="material-symbols-outlined text-sm">chevron_right</span>
                         </button>
                     @endif

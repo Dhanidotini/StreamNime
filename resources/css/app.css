@@ -60,15 +60,15 @@
     --color-background-dark: #101322;
     --color-surface-dark: #1a1d2d;
     --color-surface-light: #161a2c;
-    --color-surface-hover: #232948;
     --color-surface-border: #232948;
+    --color-surface-hover: #232948;
     --color-card-dark: #1a1d2d;
     --color-border-dark: #232948;
+    --color-white: #ffffff;
+    --color-secondary: #929bc9;
+    --color-muted: #5a6288;
 
     --text-xxs: 10px;
-    --text-primary: #ffffff;
-    --text-secondary: #929bc9;
-    --text-muted: #5a6288;
 
     /* Konfigurasi Font */
     --font-display: "Spline Sans", ui-sans-serif, system-ui, sans-serif;

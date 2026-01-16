@@ -8,7 +8,7 @@
             </a>
             <div class="hidden md:flex items-center gap-1 p-1 rounded-lg border border-surface-border/50">
                 @foreach ($navbars as $link => $title)
-                    <a class="px-4 py-1.5 text-sm font-medium text-text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all"
+                    <a class="px-4 py-1.5 text-sm font-medium text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all"
                         href="{{ route($link) }}" wire:navigate.exact wire:current="text-white bg-surface-border shadow-sm">
                         {{ $title }}
                     </a>
@@ -16,11 +16,11 @@
             </div>
         </div>
         <div class="flex items-center gap-4">
-            <a href="{{ route('pages.anime-list') }}" class="px-4 py-1.5 text-sm font-medium text-text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all">
+            <a href="{{ route('pages.anime-list') }}" class="px-4 py-1.5 text-sm font-medium text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all">
                 <span class="material-symbols-outlined">search</span>
             </a>
             <button
-                class="md:hidden px-4 py-1.5 text-sm font-medium text-text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all">
+                class="md:hidden px-4 py-1.5 text-sm font-medium text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>

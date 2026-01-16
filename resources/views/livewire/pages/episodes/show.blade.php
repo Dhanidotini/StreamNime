@@ -2,14 +2,16 @@
     <livewire:layouts.navbar />
     <main class="w-full max-w-7xl mx-auto px-4 md:px-10 py-6 flex flex-col gap-6">
         <div class="flex flex-wrap gap-2 items-center text-sm">
-            <a class="text-text-secondary hover:text-white transition-colors" href="/">Home</a>
-            <span class="text-text-secondary">/</span>
-            <span class="text-text-secondary transition-colors">Anime List</span>
-            <span class="text-text-secondary">/</span>
-            <a class="text-text-secondary hover:text-white transition-colors"
+            <a class="text-secondary hover:text-white transition-colors" href="/">Home</a>
+            <span class="text-secondary">/</span>
+            <span class="text-secondary transition-colors">Anime List</span>
+            <span class="text-secondary">/</span>
+            <a class="text-secondary hover:text-white transition-colors"
                 href="{{ route('pages.animes.show', $anime->slug) }}">{{ $anime->title }}</a>
-            <span class="text-text-secondary">/</span>
-            <span class="text-primary font-medium">{{ $episode->title }}</span>
+            <span class="text-secondary">/</span>
+            <span class="text-secondary">Episode</span>
+            <span class="text-secondary">/</span>
+            <span class="text-primary font-medium">{{ $episode->title ?? "Episode $episode->number" }}</span>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div class="lg:col-span-8 flex flex-col gap-6">
@@ -31,19 +33,19 @@
                                     {{ $anime->title }}
                                 </a>
                                 @if ($episode->release_date)
-                                    <span class="text-text-secondary text-xs">•</span>
+                                    <span class="text-secondary text-xs">•</span>
                                     <span
-                                        class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
+                                        class="text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
                                 @endif
                                 <span
-                                    class="px-2 py-0.5 rounded bg-surface-border text-text-secondary text-xxs font-bold uppercase tracking-wider ">{{ $anime->status }}</span>
+                                    class="px-2 py-0.5 rounded bg-surface-border text-secondary text-xxs font-bold uppercase tracking-wider ">{{ $anime->status }}</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-3 w-full md:w-auto shrink-0">
                             <button wire:click="prev" wire:navigate @if ($this->firstNumber() == $episode->number) disabled @endif
                                 @class([
                                     'flex-1 md:flex-none h-10 px-4 flex items-center justify-center gap-2 rounded-lg bg-primary text-white hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/25 transition-all text-sm font-bold group',
-                                    'disabled:cursor-not-allowed disabled:bg-surface-light disabled:text-text-secondary disabled:hover:shadow-none' =>
+                                    'disabled:cursor-not-allowed disabled:bg-surface-light disabled:text-secondary disabled:hover:shadow-none' =>
                                         $episode->firstNumber == $episode->number,
                                 ])>
                                 <span
@@ -54,7 +56,7 @@
                             <button wire:click="next" @if ($episode->lastNumber == $episode->number) disabled @endif
                                 @class([
                                     'flex-1 md:flex-none h-10 px-4 flex items-center justify-center gap-2 rounded-lg bg-primary text-white hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/25 transition-all text-sm font-bold group',
-                                    'disabled:cursor-not-allowed disabled:bg-surface-light disabled:text-text-secondary disabled:hover:shadow-none font-semibold' =>
+                                    'disabled:cursor-not-allowed disabled:bg-surface-light disabled:text-secondary disabled:hover:shadow-none font-semibold' =>
                                         $episode->lastNumber,
                                 ])>
                                 Next
@@ -71,12 +73,12 @@
                             <h3 class="text-lg font-bold">Synopsis</h3>
                         </div>
                         <div
-                            class="bg-surface-dark p-5 rounded-xl border border-surface-border h-full [&_p]:text-text-secondary [&_p]:text-sm [&_p]:leading-relaxed [&_p]:mb-4">
+                            class="bg-surface-dark p-5 rounded-xl border border-surface-border h-full [&_p]:text-secondary [&_p]:text-sm [&_p]:leading-relaxed [&_p]:mb-4">
                             {!! str($anime->synopsis)->words(38) !!}
 
                             <div class="flex flex-wrap gap-2">
                                 @foreach ($anime->genres as $genre)
-                                    <a class="px-3 py-1 rounded-full bg-surface-light border border-surface-border text-xs text-text-secondary hover:text-white hover:border-primary transition-colors"
+                                    <a class="px-3 py-1 rounded-full bg-surface-light border border-surface-border text-xs text-secondary hover:text-white hover:border-primary transition-colors"
                                         href="#">
                                         {{ $genre->name }}
                                     </a>
@@ -91,7 +93,7 @@
                         </div>
                         <div class="flex flex-col gap-2">
                             <div
-                                class="flex items-center justify-between p-3 rounded-lg bg-surface-light border border-surface-border hover:border-text-muted transition-colors group">
+                                class="flex items-center justify-between p-3 rounded-lg bg-surface-light border border-surface-border hover:border-muted transition-colors group">
                                 <div class="flex items-center gap-3">
                                     <div
                                         class="size-9 rounded bg-surface-border text-white flex items-center justify-center text-xs font-bold shadow-inner">
@@ -99,7 +101,7 @@
                                     </div>
                                     <div class="flex flex-col">
                                         <span class="text-sm font-bold text-white">1080p</span>
-                                        <span class="text-[10px] text-text-secondary">MKV • 450MB</span>
+                                        <span class="text-[10px] text-secondary">MKV • 450MB</span>
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
@@ -110,15 +112,15 @@
                                 </div>
                             </div>
                             <div
-                                class="flex items-center justify-between p-3 rounded-lg bg-surface-light border border-surface-border hover:border-text-muted transition-colors group">
+                                class="flex items-center justify-between p-3 rounded-lg bg-surface-light border border-surface-border hover:border-muted transition-colors group">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="size-9 rounded bg-surface-border text-text-secondary group-hover:text-white flex items-center justify-center text-xs font-bold transition-colors shadow-inner">
+                                        class="size-9 rounded bg-surface-border text-secondary group-hover:text-white flex items-center justify-center text-xs font-bold transition-colors shadow-inner">
                                         HD
                                     </div>
                                     <div class="flex flex-col">
                                         <span class="text-sm font-bold text-white">720p</span>
-                                        <span class="text-[10px] text-text-secondary">MP4 • 220MB</span>
+                                        <span class="text-[10px] text-secondary">MP4 • 220MB</span>
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
@@ -129,15 +131,15 @@
                                 </div>
                             </div>
                             <div
-                                class="flex items-center justify-between p-3 rounded-lg bg-surface-light border border-surface-border hover:border-text-muted transition-colors group">
+                                class="flex items-center justify-between p-3 rounded-lg bg-surface-light border border-surface-border hover:border-muted transition-colors group">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="size-9 rounded bg-surface-border text-text-muted group-hover:text-white flex items-center justify-center text-xs font-bold transition-colors shadow-inner">
+                                        class="size-9 rounded bg-surface-border text-muted group-hover:text-white flex items-center justify-center text-xs font-bold transition-colors shadow-inner">
                                         SD
                                     </div>
                                     <div class="flex flex-col">
                                         <span class="text-sm font-bold text-white">480p</span>
-                                        <span class="text-[10px] text-text-secondary">MP4 • 110MB</span>
+                                        <span class="text-[10px] text-secondary">MP4 • 110MB</span>
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
@@ -159,10 +161,10 @@
                             <h3 class="text-white font-bold text-sm uppercase tracking-wider">
                                 Up Next
                             </h3>
-                            <p class="text-text-muted text-xs mt-0.5">Season 1</p>
+                            <p class="text-muted text-xs mt-0.5">Season 1</p>
                         </div>
                         <div class="flex gap-1">
-                            <button class="p-1 hover:bg-surface-border rounded text-text-secondary transition-colors">
+                            <button class="p-1 hover:bg-surface-border rounded text-secondary transition-colors">
                                 <span class="material-symbols-outlined text-[20px]">sort</span>
                             </button>
                         </div>
@@ -200,21 +202,21 @@
                                             </span>
                                         @endif
                                         <span @class([
-                                            'text-text-secondary text-[10px] font-bold uppercase tracking-wider mb-0.5 group-hover:text-primary transition-colors',
+                                            'text-secondary text-[10px] font-bold uppercase tracking-wider mb-0.5 group-hover:text-primary transition-colors',
                                             'group-hover:text-white' => $allEpisode->number == $allEpisode->number,
                                         ])>
                                             Episode {{ $allEpisode->number }}
                                         </span>
                                     </div>
                                     <h4 @class([
-                                        'text-text-secondary group-hover:text-white text-sm font-medium truncate transition-colors',
+                                        'text-secondary group-hover:text-white text-sm font-medium truncate transition-colors',
                                         'text-white font-bold' => $allEpisode->number == $episode->number,
                                     ])>
                                         {{ $allEpisode->title }}
                                     </h4>
                                     @if ($allEpisode->release_date)
                                         <span
-                                            class="text-text-secondary text-xs">{{ $allEpisode->release_date->diffForHumans() }}</span>
+                                            class="text-secondary text-xs">{{ $allEpisode->release_date->diffForHumans() }}</span>
                                     @endif
                                 </div>
                             </a>

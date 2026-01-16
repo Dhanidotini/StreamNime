@@ -3,10 +3,10 @@
     <main class="flex-1 flex flex-col items-center w-full">
         <div class="w-full max-w-7xl px-4 md:px-10 py-4">
             <div class="flex flex-wrap gap-2 items-center text-sm">
-                <a class="text-text-secondary hover:text-white transition-colors" href="/">Home</a>
-                <span class="text-text-secondary">/</span>
-                <a class="text-text-secondary hover:text-white transition-colors">Anime List</a>
-                <span class="text-text-secondary">/</span>
+                <a class="text-secondary hover:text-white transition-colors" href="/">Home</a>
+                <span class="text-secondary">/</span>
+                <a class="text-secondary hover:text-white transition-colors">Anime List</a>
+                <span class="text-secondary">/</span>
                 <span class="text-primary font-medium">{{ $anime->title }}</span>
             </div>
         </div>
@@ -34,7 +34,7 @@
                             <h1 class="text-3xl md:text-5xl font-black text-white leading-tight">
                                 {{ $anime->title }}
                             </h1>
-                            <p class="text-text-secondary text-lg">
+                            <p class="text-secondary text-lg">
                                 {{ $anime->title }}
                             </p>
                         </div>
@@ -89,7 +89,7 @@
                         <span class="w-1 h-6 bg-primary rounded-full"></span>
                         Synopsis
                     </h3>
-                    <div class="text-text-secondary leading-relaxed space-y-4">
+                    <div class="text-secondary leading-relaxed space-y-4">
                         <p>
                             {!! $anime->synopsis !!}
                         </p>
@@ -103,11 +103,11 @@
                         </h3>
                         <div class="relative w-full sm:w-72">
                             <div
-                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-text-secondary">
+                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-secondary">
                                 <span class="material-symbols-outlined text-[20px]">search</span>
                             </div>
                             <input
-                                class="w-full bg-[#111422] border border-surface-dark rounded-lg py-2.5 pl-10 pr-4 text-white text-sm placeholder:text-text-secondary focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all"
+                                class="w-full bg-[#111422] border border-surface-dark rounded-lg py-2.5 pl-10 pr-4 text-white text-sm placeholder:text-secondary focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all"
                                 placeholder="Search episode..." type="text" />
                         </div>
                     </div>
@@ -129,9 +129,9 @@
                                     <div class="flex items-center gap-2 mb-1">
                                         <span class="text-primary text-xs font-bold">Ep {{ $episode->number }}</span>
                                         @if ($episode->release_date)
-                                            <span class="text-text-secondary text-xs">•</span>
+                                            <span class="text-secondary text-xs">•</span>
                                             <span
-                                                class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
+                                                class="text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
                                         @endif
                                     </div>
                                     <h4
@@ -141,13 +141,13 @@
                                 </div>
                                 <div class="hidden sm:flex px-4 md:px-10">
                                     <span
-                                        class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors">download</span>
+                                        class="material-symbols-outlined text-secondary group-hover:text-white transition-colors">download</span>
                                 </div>
                             </a>
                         @endforeach
                     </div>
                     <button
-                        class="w-full mt-6 py-3 bg-[#111422] border border-surface-dark hover:bg-secondborder-surface-dark text-text-secondary hover:text-white rounded-lg text-sm font-bold transition-colors">
+                        class="w-full mt-6 py-3 bg-[#111422] border border-surface-dark hover:bg-secondborder-surface-dark text-secondary hover:text-white rounded-lg text-sm font-bold transition-colors">
                         Show All Episodes
                     </button>
                 </section>
@@ -180,32 +180,32 @@
                     <h3 class="text-lg font-bold text-white mb-4">Information</h3>
                     <div class="space-y-4">
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-text-secondary text-sm">Type</span>
+                            <span class="text-secondary text-sm">Type</span>
                             <span class="text-white text-sm font-medium">{{ $anime->type }}</span>
                         </div>
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-text-secondary text-sm">Episodes</span>
+                            <span class="text-secondary text-sm">Episodes</span>
                             <span class="text-white text-sm font-medium">{{ $anime->episodes->count() }}</span>
                         </div>
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-text-secondary text-sm">Status</span>
+                            <span class="text-secondary text-sm">Status</span>
                             <span class="text-white text-sm font-medium">{{ $anime->status->name }}</span>
                         </div>
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-text-secondary text-sm">Aired</span>
+                            <span class="text-secondary text-sm">Aired</span>
                             <span
                                 class="text-white text-sm font-medium">{{ $anime->release_date->diffForHumans() }}</span>
                         </div>
                         {{-- <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-text-secondary text-sm">Producers</span>
+                            <span class="text-secondary text-sm">Producers</span>
                             <span class="text-white text-sm font-medium">Aniplex, Shueisha</span>
                         </div>
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-text-secondary text-sm">Studio</span>
+                            <span class="text-secondary text-sm">Studio</span>
                             <span class="text-white text-sm font-medium">ufotable</span>
                         </div>
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-text-secondary text-sm">Duration</span>
+                            <span class="text-secondary text-sm">Duration</span>
                             <span class="text-white text-sm font-medium">24 min. per ep.</span>
                         </div> --}}
                     </div>
@@ -222,7 +222,7 @@
                                 <h4
                                     class="text-white text-sm font-medium leading-tight group-hover:text-primary transition-colors line-clamp-2">
                                     Jujutsu Kaisen Season 2</h4>
-                                <span class="text-text-secondary text-xs mt-1">TV • 2023</span>
+                                <span class="text-secondary text-xs mt-1">TV • 2023</span>
                                 <div class="flex items-center gap-1 mt-1 text-yellow-400 text-xs font-bold">
                                     <span class="material-symbols-outlined text-[12px] fill-current">star</span> 8.9
                                 </div>
@@ -239,7 +239,7 @@
                                 <h4
                                     class="text-white text-sm font-medium leading-tight group-hover:text-primary transition-colors line-clamp-2">
                                     Chainsaw Man</h4>
-                                <span class="text-text-secondary text-xs mt-1">TV • 2022</span>
+                                <span class="text-secondary text-xs mt-1">TV • 2022</span>
                                 <div class="flex items-center gap-1 mt-1 text-yellow-400 text-xs font-bold">
                                     <span class="material-symbols-outlined text-[12px] fill-current">star</span> 8.6
                                 </div>
@@ -256,7 +256,7 @@
                                 <h4
                                     class="text-white text-sm font-medium leading-tight group-hover:text-primary transition-colors line-clamp-2">
                                     Bleach: Thousand-Year Blood War</h4>
-                                <span class="text-text-secondary text-xs mt-1">TV • 2022</span>
+                                <span class="text-secondary text-xs mt-1">TV • 2022</span>
                                 <div class="flex items-center gap-1 mt-1 text-yellow-400 text-xs font-bold">
                                     <span class="material-symbols-outlined text-[12px] fill-current">star</span> 9.0
                                 </div>
