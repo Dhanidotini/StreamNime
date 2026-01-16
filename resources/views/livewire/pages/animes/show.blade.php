@@ -130,7 +130,7 @@
 
                                     {{-- TODO: Adding release_date in episode --}}
                                     <span class="text-text-secondary text-xs">•</span>
-                                    <span class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
+                                    <span class="text-text-secondary text-xs">{{ $episode->release_date->diffForHumans() ?? '' }}</span>
                                 </div>
                                 <h4 class="text-white text-sm font-medium truncate group-hover:text-primary transition-colors">
                                 {{ $episode->title }}
