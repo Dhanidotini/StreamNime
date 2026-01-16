@@ -24,8 +24,11 @@
             {{ $episode->title }}
         </h3>
         <span class="text-xs mt-1">{{ $episode->anime->title }}</span>
-        <p class="text-xs text-gray-400">
+        @if ($episode->release_date)
+        <p class="text-xs text-gray-400"></p>
             {{ $episode->release_date->diffForHumans() }}
         </p>
+        @endif
+
     </div>
 </a>
