@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Genre;
 use App\Observers\GenreObserver;
 use App\Observers\MediaObserver;
+use Illuminate\Support\Facades\URL;
 use App\View\Composer\GenreComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -31,5 +32,12 @@ class AppServiceProvider extends ServiceProvider
         FilamentTimezone::set('Asia/Jakarta');
 
         View::composer('livewire.layouts.genres', GenreComposer::class);
+
+        if (config('app.env') !== 'local') {
+            URL::forceScheme('https');
+
+            // Memaksa state request menjadi secure secara manual
+            request()->server->set('HTTPS', 'on');
+        }
     }
 }
