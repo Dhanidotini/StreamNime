@@ -14,6 +14,8 @@ use App\Filament\Resources\Episodes\Pages\ListEpisodes;
 use App\Filament\Resources\Episodes\Pages\CreateEpisode;
 use App\Filament\Resources\Episodes\Schemas\EpisodeForm;
 use App\Filament\Resources\Episodes\Tables\EpisodesTable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use SebastianBergmann\CodeCoverage\Report\Xml\Unit;
 use UnitEnum;
 
@@ -48,5 +50,13 @@ class EpisodeResource extends Resource
             'create' => CreateEpisode::route('/create'),
             'edit' => EditEpisode::route('/{record}/edit'),
         ];
+    }
+
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class
+            ]);
     }
 }

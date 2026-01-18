@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Episode extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasModelScope;
+    use InteractsWithMedia, HasModelScope, SoftDeletes;
 
     protected $fillable = [
         'title',

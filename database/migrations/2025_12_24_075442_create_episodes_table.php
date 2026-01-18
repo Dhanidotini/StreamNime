@@ -25,6 +25,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->datetime('release_date')
                 ->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
