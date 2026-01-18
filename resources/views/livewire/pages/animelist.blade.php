@@ -20,7 +20,7 @@
                         class="flex items-center justify-center pl-4 rounded-l-xl bg-white dark:bg-card-dark border border-r-0 border-none text-slate-400 dark:text-secondary">
                         <span class="material-symbols-outlined">search</span>
                     </div>
-                    <input type="text" wire:model.live="search"
+                    <input name="search" type="text" wire:model.live="search"
                         class="flex-1 bg-white dark:bg-card-dark outline-0 border-l-0 border-r-0 border-none border-y text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-secondary focus:ring-0 active:ring-0 focus:border-gray-200 dark:focus:border-border-dark h-14 px-3 text-base"
                         placeholder="Cari judul anime, contoh: One Piece..." />
                     <button type="submit"
@@ -128,7 +128,7 @@
                             </summary>
                             <div class="px-5 pb-5 pt-0">
                                 <div class="flex items-center gap-2">
-                                    <select name="year" id="year" wire:model.live='searchYearFrom'
+                                    <select name="startYear" wire:model.live='searchYearFrom'
                                         class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow">
                                         <option class="dark:bg-card-dark" value="">Dari</option>
                                         @foreach ($filterYear as $year)
@@ -137,7 +137,7 @@
                                         @endforeach
                                     </select>
                                     <span class="text-slate-400">-</span>
-                                    <select name="year" id="year" wire:model.live='searchYearTo'
+                                    <select name="endYear" wire:model.live='searchYearTo'
                                         class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow">
                                         <option class="dark:bg-card-dark" value="">Ke</option>
                                         @foreach ($filterYear as $year)
@@ -185,9 +185,9 @@
                     <span class="text-slate-900 dark:text-white font-bold">{{ $paginateAnime->total() }}</span> anime
                 </p>
                 <div class="flex items-center gap-3">
-                    <label
+                    <label for="sort"
                         class="text-sm font-medium text-slate-600 dark:text-secondary whitespace-nowrap">Urutkan:</label>
-                    <select wire:model.lazy='sorterFilter'
+                    <select id="sort" wire:model.lazy='sorterFilter'
                         class="bg-white dark:bg-card-dark border border-gray-300 dark:border-border-dark text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
                         <option value="title_asc">Judul A-Z</option>
                         <option value="title_desc">Judul Z-A</option>
