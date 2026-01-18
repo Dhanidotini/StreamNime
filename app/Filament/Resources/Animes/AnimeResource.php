@@ -19,6 +19,8 @@ use App\Filament\Resources\Animes\Tables\AnimesTable;
 use App\Filament\Resources\Episodes\Pages\CreateEpisode;
 use App\Filament\Resources\Animes\Pages\ManageAnimeEpisodes;
 use App\Filament\Resources\Animes\RelationManagers\EpisodesRelationManager;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AnimeResource extends Resource
 {
@@ -51,5 +53,13 @@ class AnimeResource extends Resource
             'create' => CreateAnime::route('/create'),
             'edit' => EditAnime::route('/{record}/edit'),
         ];
+    }
+
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+        ->withoutGlobalScopes([
+            SoftDeletingScope::class,
+        ]);
     }
 }

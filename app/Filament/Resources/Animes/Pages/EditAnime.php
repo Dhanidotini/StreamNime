@@ -4,6 +4,8 @@ namespace App\Filament\Resources\Animes\Pages;
 
 use App\Filament\Resources\Animes\AnimeResource;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditAnime extends EditRecord
@@ -14,6 +16,8 @@ class EditAnime extends EditRecord
     {
         return [
             DeleteAction::make(),
+            ForceDeleteAction::make(),
+            RestoreAction::make(),
         ];
     }
 }

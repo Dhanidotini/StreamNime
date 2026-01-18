@@ -18,11 +18,12 @@ use App\Services\MediaLibrary\CustomPathGenerator;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGeneratorFactory;
 
 class Anime extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasModelScope;
+    use InteractsWithMedia, HasModelScope, SoftDeletes;
 
     protected $fillable = [
         'title',
