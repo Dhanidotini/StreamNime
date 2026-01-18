@@ -196,18 +196,18 @@
                             <span
                                 class="text-white text-sm font-medium">{{ $anime->release_date->diffForHumans() }}</span>
                         </div>
-                        {{-- <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-secondary text-sm">Producers</span>
-                            <span class="text-white text-sm font-medium">Aniplex, Shueisha</span>
-                        </div>
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
                             <span class="text-secondary text-sm">Studio</span>
-                            <span class="text-white text-sm font-medium">ufotable</span>
+                            <span class="text-white text-sm font-medium">
+                                @forelse ($anime->studios as $studio)
+                                    <span key="{{ $studio->id }}">
+                                        {{ $studio->name }}@if (! $loop->last),@endif
+                                    </span>
+                                @empty
+                                    -
+                                @endforelse
+                            </span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
-                            <span class="text-secondary text-sm">Duration</span>
-                            <span class="text-white text-sm font-medium">24 min. per ep.</span>
-                        </div> --}}
                     </div>
                     <h3 class="text-lg font-bold text-white mt-8 mb-4">Related Anime</h3>
                     <div class="space-y-4">
