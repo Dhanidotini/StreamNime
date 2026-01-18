@@ -36,8 +36,7 @@ class AppServiceProvider extends ServiceProvider
         // Data of genres to be asscessable from anywhere
         View::composer('livewire.layouts.genres', GenreComposer::class);
 
-        // Force requeset from cloudflare to https
-        if (config('app.env') !== 'local') {
+        if (app()->environment('production')) {
             URL::forceScheme('https');
 
             // Memaksa state request menjadi secure secara manual
