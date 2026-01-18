@@ -43,7 +43,12 @@ class DashboardPanelProvider extends PanelProvider
                 NavigationItem::make()
                     ->label('Go to Website')
                     ->icon('heroicon-o-globe-alt')
-                    ->url('/'),
+                    ->url('/', shouldOpenInNewTab: true),
+                NavigationItem::make('Telescope')
+                    ->url('/telescope', shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-bug-ant')
+                    ->group('System')
+                    ->visible(fn(): bool => auth()->user()?->can('View:Telescope') ?? false),
             ])
             ->colors([
                 'primary' => Color::Blue,
@@ -56,7 +61,6 @@ class DashboardPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -3,5 +3,5 @@
 return [
     App\Providers\AppServiceProvider::class,
     App\Providers\Filament\DashboardPanelProvider::class,
-    App\Providers\VoltServiceProvider::class,
+    App\Providers\TelescopeServiceProvider::class,
 ];
