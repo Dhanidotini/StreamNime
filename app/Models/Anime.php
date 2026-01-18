@@ -86,4 +86,10 @@ class Anime extends Model implements HasMedia
     {
         return $this->belongsToMany(Genre::class);
     }
+
+    // Belongs to many Studio tables
+    public function studios(): BelongsToMany
+    {
+        return $this->belongsToMany(Studio::class);
+    }
 }

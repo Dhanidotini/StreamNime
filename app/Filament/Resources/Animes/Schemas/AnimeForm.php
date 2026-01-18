@@ -78,6 +78,10 @@ class AnimeForm
                         Select::make('Genres')
                             ->multiple()
                             ->relationship('genres', 'name')
+                            ->preload(),
+                        Select::make('Studios')
+                            ->multiple()
+                            ->relationship('studios', 'name')
                             ->preload()
                     ]),
                 Toggle::make('is_trending')
