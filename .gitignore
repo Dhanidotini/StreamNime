@@ -6,6 +6,7 @@
 .phpactor.json
 .phpunit.result.cache
 /.fleet
+/.devcontainer
 /.idea
 /.nova
 /.phpunit.cache
@@ -25,3 +26,4 @@
 /storage/media-library/*
 Homestead.json
 Homestead.yaml
+compose.yaml
