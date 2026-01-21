@@ -22,5 +22,6 @@
 /storage/*.key
 /storage/pail
 /vendor
+/storage/media-library/*
 Homestead.json
 Homestead.yaml
