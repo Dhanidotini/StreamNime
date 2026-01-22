@@ -6,15 +6,17 @@ use Filament\Tables\Table;
 use Filament\Actions\EditAction;
 use Filament\Actions\AttachAction;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\RestoreAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ForceDeleteAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\TrashedFilter;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
 class AnimesTable
 {
@@ -22,6 +24,10 @@ class AnimesTable
     {
         return $table
             ->columns([
+                SpatieMediaLibraryImageColumn::make('posters')
+                    ->collection('posters')
+                    ->conversion('small')
+                    ->visibility('public'),
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('status')

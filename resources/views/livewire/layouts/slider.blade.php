@@ -3,8 +3,8 @@
         @isset($trendingAnime)
             <div class="relative overflow-hidden rounded-2xl bg-surface-dark shadow-2xl">
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
-                    data-alt="Dramatic anime scene with dark moody lighting and characters looking at a distant light"
-                    style="background-image: url('{{ $trendingAnime->getFirstMediaUrl('trending', 'thumbnail') }}');">
+                    data-alt="{{ $trendingAnime->title }}"
+                    style="background-image: url('{{ $trendingAnime->banner_url }}');">
                 </div>
                 <div class="absolute inset-0 bg-linear-to-t from-background-dark via-background-dark/60 to-transparent">
                 </div>

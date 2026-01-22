@@ -16,7 +16,7 @@
                 <div class="absolute inset-0 z-0">
                     <div class="w-full h-full bg-cover bg-center opacity-20 blur-xl"
                         data-alt="Abstract blurry anime background"
-                        style="background-image: url('{{ $anime->thumbnail_url }}');">
+                        style="background-image: url('{{ $anime->banner_url }}');">
                     </div>
                     <div class="absolute inset-0 bg-linear-to-t from-[#111422] via-[#111422]/80 to-transparent"></div>
                 </div>
@@ -26,7 +26,7 @@
                             class="w-60 aspect-2/3 rounded-xl overflow-hidden shadow-2xl shadow-black/50 border border-surface-dark">
                             <img alt="Kimetsu no Yaiba Poster Art"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                                data-alt="Anime character portrait with sword" src="{{ $anime->thumbnail_url }}" />
+                                data-alt="Anime character portrait with sword" src="{{ $anime->poster_url }}" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-6 flex-1 text-center md:text-left">
@@ -211,7 +211,7 @@
                     </div>
                     <h3 class="text-lg font-bold text-white mt-8 mb-4">Related Anime</h3>
                     <div class="space-y-4">
-                        <a class="flex gap-3 group" href="#">
+                        {{-- <a class="flex gap-3 group" href="#">
                             <div class="w-16 h-24 rounded-lg overflow-hidden shrink-0">
                                 <img alt="Jujutsu Kaisen cover"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform"
@@ -227,41 +227,7 @@
                                     <span class="material-symbols-outlined text-[12px] fill-current">star</span> 8.9
                                 </div>
                             </div>
-                        </a>
-                        <a class="flex gap-3 group" href="#">
-                            <div class="w-16 h-24 rounded-lg overflow-hidden shrink-0">
-                                <img alt="Chainsaw Man cover"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform"
-                                    data-alt="Anime character with chainsaw"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOubABXQvYjD3yAEVZqhFex2jtx8msRnYyJ7H_Z9S0YopkgwuDKNo4QbquvQQ4yr07ZSb5Hv9d9Ckbzi2UJpC5rnBwVp7LmgvHaNd2eKgJgLh4GfK2rqjLv_YfezBvyrP6xnk3aLzbxlS_4ZJw8na-5Zhom2_0iPYe8Y9SpKV_4n0cVOozCbisi8W6TH2Fy7x9dsuSmXTE_hYifiqdtdQWhuDTOzCcfYIzolxFbygvsaVWk6_txuliWjg9Y9GDrtJZlpvuCD2DDhGa" />
-                            </div>
-                            <div class="flex flex-col justify-center">
-                                <h4
-                                    class="text-white text-sm font-medium leading-tight group-hover:text-primary transition-colors line-clamp-2">
-                                    Chainsaw Man</h4>
-                                <span class="text-secondary text-xs mt-1">TV • 2022</span>
-                                <div class="flex items-center gap-1 mt-1 text-yellow-400 text-xs font-bold">
-                                    <span class="material-symbols-outlined text-[12px] fill-current">star</span> 8.6
-                                </div>
-                            </div>
-                        </a>
-                        <a class="flex gap-3 group" href="#">
-                            <div class="w-16 h-24 rounded-lg overflow-hidden shrink-0">
-                                <img alt="Bleach cover"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform"
-                                    data-alt="Anime samurai with orange hair"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuANInb9kpX9s7qAXMzrW2WSKNBvIPrrUcbxVqZO1QMaTqN2rpxo1kIXD-l2vkwz1MmX9XNtjigqEh6f4iuuTTRerEYlROkRV7NDtZtnmtZIk0ntv6nYRConhsRQ0QnSf9_0PvCn1WkA-QWNTV8UQonnKJh8job76FyloLVa2ud7BA4pau0iG6KC3BLQzMc4YxRsho9q2AMVl9luH3BDKuJyDMKYNyGxaL9Uf4xdz7XjzZnSALV78CV_7cXLWA9Z3zE0-opt95R6MlYq" />
-                            </div>
-                            <div class="flex flex-col justify-center">
-                                <h4
-                                    class="text-white text-sm font-medium leading-tight group-hover:text-primary transition-colors line-clamp-2">
-                                    Bleach: Thousand-Year Blood War</h4>
-                                <span class="text-secondary text-xs mt-1">TV • 2022</span>
-                                <div class="flex items-center gap-1 mt-1 text-yellow-400 text-xs font-bold">
-                                    <span class="material-symbols-outlined text-[12px] fill-current">star</span> 9.0
-                                </div>
-                            </div>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>

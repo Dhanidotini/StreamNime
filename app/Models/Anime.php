@@ -5,25 +5,28 @@ namespace App\Models;
 use App\Models\Genre;
 use App\Models\Episode;
 use App\Traits\HasModelScope;
-use App\Traits\CacheableAnime;
-use App\Traits\HasCachedMedia;
 use App\Enums\Anime\StatusEnum;
 use Spatie\MediaLibrary\HasMedia;
 use App\Enums\Enums\Anime\TypeEnum;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+use App\Traits\HasStandardImageConversions;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use App\Services\MediaLibrary\CustomPathGenerator;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\Support\PathGenerator\PathGeneratorFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Anime extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasModelScope, SoftDeletes;
+    use InteractsWithMedia, HasModelScope, SoftDeletes, HasStandardImageConversions {
+        HasStandardImageConversions::registerMediaConversions insteadof InteractsWithMedia;
+    }
+
+    // Media Collection
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('posters');
+        $this->addMediaCollection('banners');
+    }
 
     protected $fillable = [
         'title',
@@ -42,41 +45,6 @@ class Anime extends Model implements HasMedia
         'status' => StatusEnum::class,
         'type' => TypeEnum::class
     ];
-
-    protected static function booting(): void
-    {
-        PathGeneratorFactory::setCustomPathGenerators(static::class, CustomPathGenerator::class);
-    }
-
-    public function registerMediaCollections(?Media $media = null): void
-    {
-        $this
-            ->addMediaCollection('images')
-            ->useDisk('media')
-            ->registerMediaConversions(
-                function (Media $media) {
-                    $this->addMediaConversion('thumbnail')
-                        ->format('webp')
-                        ->width(500)
-                        ->quality(70)
-                        ->optimize()
-                        ->nonQueued();
-                }
-            );
-        $this
-            ->addMediaCollection('trending')
-            ->useDisk('media')
-            ->registerMediaConversions(
-                function (Media $media) {
-                    $this->addMediaConversion('thumbnail')
-                        ->format('webp')
-                        ->width(800)
-                        ->quality(80)
-                        ->optimize()
-                        ->nonQueued();
-                }
-            );
-    }
 
     public function episodes(): HasMany
     {

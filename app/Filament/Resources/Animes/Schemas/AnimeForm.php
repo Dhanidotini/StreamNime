@@ -26,17 +26,17 @@ class AnimeForm
         return $schema
             ->components([
                 SpatieMediaLibraryFileUpload::make('posters')
-                    ->collection('images')
-                    ->openable()
+                    ->collection('posters')
+                    ->visibility('public')
                     ->image()
+                    ->openable()
                     ->moveFiles(),
                 SpatieMediaLibraryFileUpload::make('banners')
-                    ->collection('trending')
+                    ->collection('banners')
+                    ->visibility('public')
                     ->image()
                     ->openable()
-                    ->moveFiles()
-                    ->live()
-                    ->required(),
+                    ->moveFiles(),
                 TextInput::make('title')
                     ->required()
                     ->live(onBlur: true)

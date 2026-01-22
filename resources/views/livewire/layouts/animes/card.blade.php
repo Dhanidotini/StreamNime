@@ -2,7 +2,7 @@
     href="{{ route('pages.animes.show', $anime) }}" wire:navigate>
     <div class="relative aspect-3/4 w-full overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-            style="background-image: url('{{ $anime->thumbnail_url }}')">
+                style="background-image: url('{{ $anime->poster_url }}')">
         </div>
         <div class="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent">
         </div>
