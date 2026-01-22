@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Media;
+use App\Services\MediaLibrary\CustomFileNamer;
+use App\Services\MediaLibrary\CustomPathGenerator;
 
 return [
 
@@ -7,7 +10,7 @@ return [
      * The disk on which to store added files and derived images by default. Choose
      * one or more of the disks you've configured in config/filesystems.php.
      */
-    'disk_name' => env('MEDIA_DISK', 'public'),
+    'disk_name' => env('MEDIA_DISK', 's3'),
 
     /*
      * The maximum file size of an item in bytes.
@@ -40,7 +43,7 @@ return [
     /*
      * The fully qualified class name of the media model.
      */
-    'media_model' => Spatie\MediaLibrary\MediaCollections\Models\Media::class,
+    'media_model' => Media::class,
 
     /*
      * The fully qualified class name of the media observer.
@@ -71,12 +74,12 @@ return [
     /*
      * This is the class that is responsible for naming generated files.
      */
-    'file_namer' => App\Services\MediaLibrary\CustomFileNamer::class,
+    'file_namer' => CustomFileNamer::class,
 
     /*
      * The class that contains the strategy for determining a media file's path.
      */
-    'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
+    'path_generator' => CustomPathGenerator::class,
 
     /*
      * The class that contains the strategy for determining how to remove files.

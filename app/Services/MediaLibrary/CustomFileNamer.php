@@ -15,7 +15,7 @@ class CustomFileNamer extends FileNamer
     public function conversionFileName(string $fileName, Conversion $conversion): string
     {
         $stripedName = pathinfo($fileName, PATHINFO_FILENAME);
-        return "{$stripedName}-{$conversion->getname()}";
+        return "{$stripedName}-{$conversion->getName()}";
     }
 
     public function responsiveFileName(string $fileName): string
