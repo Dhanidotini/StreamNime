@@ -204,7 +204,7 @@
                             <img alt="Anime Poster"
                                 class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                                 data-alt="Anime boy character illustration with blue background"
-                                src="{{ $anime->thumbnail_url }}" />
+                                src="{{ $anime->poster_url }}" />
                             <div class="absolute top-2 left-2 flex flex-col gap-1">
                                 <span
                                     class="bg-primary/90 backdrop-blur-sm text-white text-xxs font-bold px-2 py-0.5 rounded shadow-sm">
