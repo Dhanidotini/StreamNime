@@ -12,10 +12,14 @@ class Show extends Component
 {
     public Anime $anime;
     public ?Episode $episode;
-    public $firstNumber;
+    public $firstNumber, $lastNumber;
     public function firstNumber()
     {
         return $this->anime->episodes->first()->number == $this->episode->number;
+    }
+    public function lastNumber()
+    {
+        return $this->anime->episodes->last()->number == $this->episode->number;
     }
     public function mount(Anime $anime, Episode $episode)
     {

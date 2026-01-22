@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Traits\HasModelScope;
+use App\Traits\HasStandardImageConversions;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +16,20 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Episode extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasModelScope, SoftDeletes;
+    use InteractsWithMedia, HasModelScope, SoftDeletes, HasStandardImageConversions {
+        HasStandardImageConversions::registerMediaConversions insteadof InteractsWithMedia;
+    }
+
+    public function registerMediaCollections(?Media $media = null): void
+    {
+        $this->addMediaCollection('banners');
+    }
+
+    public function getAbyssUrlAttribute()
+    {
+        return env('VIDEO_PREFIX', 'https://short.icu/').$this->video_url;
+    }
+
 
     protected $fillable = [
         'title',
@@ -27,22 +42,6 @@ class Episode extends Model implements HasMedia
     protected $casts = [
         'release_date' => 'datetime:Y-m-d H:i:s',
     ];
-
-    public function registerMediaCollections(?Media $media = null): void
-    {
-        $this->addMediaCollection('images')
-            ->useDisk('media')
-            ->registerMediaConversions(
-                function (Media $media) {
-                    $this
-                        ->addMediaConversion('thumbnail')
-                        ->format('webp')
-                        ->width(600)
-                        ->quality(70)
-                        ->optimize();
-                }
-            );
-    }
 
     public function anime(): BelongsTo
     {

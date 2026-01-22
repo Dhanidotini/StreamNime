@@ -16,11 +16,21 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div class="lg:col-span-8 flex flex-col gap-6">
                 <div class="flex flex-col gap-4">
+                    @if ($episode->abyss_url)
+                        <iframe allowfullscreen borderadius="0"
+                            class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl shadow-black/60 group border border-surface-border"
+                            src="{{ $episode->abyss_url }}">
+                        </iframe>
+                    @else
+                        <div class="aspect-video w-full relative">
+                            <div class="aspect-video rounded-xl border-surface-border w-full bg-cover opacity-25"
+                                style="background-image: url({{ $episode->banner_url }})">
+                            </div>
+                            <span class="absolute top-5/12 left-5/12 text-white">Not avaiable yet.</span>
+                        </div>
+                    @endif
 
-                    <iframe allowfullscreen borderadius="0"
-                        class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl shadow-black/60 group border border-surface-border"
-                        src="{{ $episode->abyss_url }}">
-                    </iframe>
+
                     <div
                         class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-5 rounded-xl bg-surface-dark border border-surface-border">
                         <div class="flex-1 min-w-0">
@@ -45,19 +55,17 @@
                             <button wire:click="prev" wire:navigate @if ($this->firstNumber() == $episode->number) disabled @endif
                                 @class([
                                     'flex-1 md:flex-none h-10 px-4 flex items-center justify-center gap-2 rounded-lg bg-primary text-white hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/25 transition-all text-sm font-bold group',
-                                    'disabled:cursor-not-allowed disabled:bg-surface-light disabled:text-secondary disabled:hover:shadow-none' =>
-                                        $episode->firstNumber == $episode->number,
+                                    'disabled:cursor-not-allowed disabled:bg-surface-light disabled:text-secondary disabled:hover:shadow-none' => $this->firstNumber(),
                                 ])>
                                 <span
                                     class="material-symbols-outlined text-[18px] group-disabled:translate-x-0 group-hover:-translate-x-1 transition-transform">arrow_back</span>
                                 Prev
                             </button>
 
-                            <button wire:click="next" @if ($episode->lastNumber == $episode->number) disabled @endif
+                            <button wire:click="next" @if ($this->lastNumber() == $episode->number) disabled @endif
                                 @class([
                                     'flex-1 md:flex-none h-10 px-4 flex items-center justify-center gap-2 rounded-lg bg-primary text-white hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/25 transition-all text-sm font-bold group',
-                                    'disabled:cursor-not-allowed disabled:bg-surface-light disabled:text-secondary disabled:hover:shadow-none font-semibold' =>
-                                        $episode->lastNumber,
+                                    'disabled:cursor-not-allowed disabled:bg-surface-light disabled:text-secondary disabled:hover:shadow-none font-semibold' => $this->lastNumber(),
                                 ])>
                                 Next
                                 <span
@@ -139,7 +147,7 @@
                                     </div>
                                     <div class="flex flex-col">
                                         <span class="text-sm font-bold text-white">480p</span>
-                                        <span class="text-[10px] text-secondary">MP4 • 110MB</span>
+                                        <span class="text-xxs text-secondary">MP4 • 110MB</span>
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
@@ -182,7 +190,7 @@
                                         'w-full h-full object-cover',
                                         'opacity-60' => $episode->number == $allEpisode->number,
                                     ]) alt="Ep {{ $allEpisode->number }}"
-                                        src="{{ $allEpisode->thumbnail_url }}" />
+                                        src="{{ $allEpisode->banner_url }}" />
                                     @if ($episode->number == $allEpisode->number)
                                         <div class="absolute inset-0 flex items-center justify-center">
                                             <div

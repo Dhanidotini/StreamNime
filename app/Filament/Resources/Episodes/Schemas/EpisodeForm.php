@@ -15,8 +15,9 @@ class EpisodeForm
     {
         return $schema
             ->components([
-                SpatieMediaLibraryFileUpload::make('posters')
-                    ->collection('images')
+                SpatieMediaLibraryFileUpload::make('banners')
+                    ->collection('banners')
+                    ->visibility('public')
                     ->image()
                     ->openable()
                     ->moveFiles(),

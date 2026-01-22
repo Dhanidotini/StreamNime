@@ -119,7 +119,7 @@
                                     class="relative w-32 aspect-video shrink-0 rounded overflow-hidden bg-surface-darker">
                                     <img alt="Ep 1 Thumbnail"
                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                        src="{{ $episode->thumbnail_url }}" />
+                                        src="{{ $episode->banner_url }}" />
                                     <div
                                         class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                         <span class="material-symbols-outlined text-white text-[24px]">play_arrow</span>
