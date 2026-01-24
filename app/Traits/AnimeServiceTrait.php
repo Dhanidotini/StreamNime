@@ -46,6 +46,7 @@ trait AnimeServiceTrait
         return Anime::where('rating', '<=', 10)
             ->with(['genres', 'media'])
             ->orderBy('rating', 'desc')
+            ->limit($limit)
             ->get();
     }
 }

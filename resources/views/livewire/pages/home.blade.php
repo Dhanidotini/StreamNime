@@ -98,7 +98,7 @@
                                             <div class="absolute inset-0 bg-cover bg-center"
                                                 data-alt="Anime poster abstract"
                                                 style="
-                                                background-image: url('{{ $anime->getFirstMediaUrl('images', 'thumbnail') }}');
+                                                background-image: url('{{ $anime->poster_url }}');
                                             ">
                                             </div>
                                             <div @class([
