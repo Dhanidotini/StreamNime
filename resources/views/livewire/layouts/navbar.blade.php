@@ -6,7 +6,9 @@
 
             {{-- Logo --}}
             <a class="flex items-center gap-2 group" href="/" wire:navigate>
-                <livewire:partials.app.logo />
+                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
+                    <span class="material-symbols-outlined text-[20px]">smart_display</span>
+                </div>
                 <span class="text-xl font-bold tracking-tight text-white">{{ config('app.name') }}</span>
             </a>
 
@@ -14,7 +16,8 @@
             <div class="hidden md:flex items-center gap-1 p-1 rounded-lg border border-surface-border/50">
                 @foreach ($navbars as $link => $title)
                     <a class="px-4 py-1.5 text-sm font-medium text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all"
-                        href="{{ route($link) }}" wire:navigate.exact wire:current="text-white bg-surface-border shadow-sm">
+                        href="{{ route($link) }}" wire:navigate.exact
+                        wire:current="text-white bg-surface-border shadow-sm">
                         {{ $title }}
                     </a>
                 @endforeach
@@ -23,7 +26,8 @@
 
         {{-- Mobile view --}}
         <div class="flex items-center gap-4">
-            <a href="{{ route('pages.anime-list') }}" class="px-4 py-1.5 text-sm font-medium text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all">
+            <a href="{{ route('pages.anime-list') }}"
+                class="px-4 py-1.5 text-sm font-medium text-secondary hover:text-white hover:bg-surface-border/50 rounded transition-all">
                 <span class="material-symbols-outlined">search</span>
             </a>
 
