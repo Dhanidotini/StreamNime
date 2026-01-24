@@ -3,7 +3,7 @@
     <div class="relative aspect-video w-full overflow-hidden rounded-xl bg-surface-hover">
         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
             data-alt="Anime character looking at sky with futuristic city background"
-            style="background-image: url('{{ $episode->thumbnail_url }}');">
+            style="background-image: url('{{ $episode->banner_url }}');">
         </div>
         <div
             class="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
