@@ -29,7 +29,6 @@ return new class extends Migration
                 ->nullable();
             $table->string('type')
                 ->default(TypeEnum::Unknown);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
