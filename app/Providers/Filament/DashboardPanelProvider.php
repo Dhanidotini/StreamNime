@@ -44,11 +44,10 @@ class DashboardPanelProvider extends PanelProvider
                     ->label('Go to Website')
                     ->icon('heroicon-o-globe-alt')
                     ->url('/', shouldOpenInNewTab: true),
-                NavigationItem::make('Telescope')
-                    ->url('/telescope', shouldOpenInNewTab: true)
+                NavigationItem::make('Horizon')
+                    ->url('/horizon', shouldOpenInNewTab: true)
                     ->icon('heroicon-o-bug-ant')
                     ->group('System')
-                    ->visible(fn(): bool => auth()->user()?->can('View:Telescope') ?? false),
             ])
             ->colors([
                 'primary' => Color::Blue,

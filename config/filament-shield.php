@@ -229,7 +229,7 @@ return [
     */
 
     'custom_permissions' => [
-        'View:Telescope' => 'View Telescope',
+        'View:Horizon' => 'View Horizon',
     ],
 
     /*
