@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Models\User;
-use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -25,13 +24,8 @@ class DownloadImageFromUrl implements ShouldQueue
 
         Notification::make()
             ->success()
-            ->title("Success Import Image {$this->collection}")
-            ->body("Image for colleciton $this->collection has successfull imported!")
-            ->actions([
-                Action::make('See')
-                    ->button()
-                    ->url(fn () => request()->header('Referer'))
-            ])
+            ->title("Import image success")
+            ->body("Image for {$this->collection} collection has successfull imported!")
             ->sendToDatabase(User::first());
     }
 }

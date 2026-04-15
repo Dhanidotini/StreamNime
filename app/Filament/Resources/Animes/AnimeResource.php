@@ -8,18 +8,13 @@ use App\Models\Anime;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
-use Filament\Resources\Pages\Page;
 use Filament\Support\Icons\Heroicon;
-use Illuminate\Support\Facades\Route;
 use App\Filament\Resources\Animes\Pages\EditAnime;
 use App\Filament\Resources\Animes\Pages\ListAnimes;
 use App\Filament\Resources\Animes\Pages\CreateAnime;
 use App\Filament\Resources\Animes\Schemas\AnimeForm;
 use App\Filament\Resources\Animes\Tables\AnimesTable;
-use App\Filament\Resources\Episodes\Pages\CreateEpisode;
-use App\Filament\Resources\Animes\Pages\ManageAnimeEpisodes;
 use App\Filament\Resources\Animes\RelationManagers\EpisodesRelationManager;
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
