@@ -19,6 +19,7 @@ use App\Filament\Resources\Animes\Tables\AnimesTable;
 use App\Filament\Resources\Episodes\Pages\CreateEpisode;
 use App\Filament\Resources\Animes\Pages\ManageAnimeEpisodes;
 use App\Filament\Resources\Animes\RelationManagers\EpisodesRelationManager;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -29,6 +30,11 @@ class AnimeResource extends Resource
     protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::RectangleStack;
     protected static string|UnitEnum|null $navigationGroup = 'Anime Management';
     protected static ?string $recordTitleAttribute = 'title';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Schema $schema): Schema
     {
