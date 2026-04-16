@@ -15,6 +15,11 @@ class EditAnime extends EditRecord
 
     protected static string $resource = AnimeResource::class;
 
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
+
     protected function getHeaderActions(): array
     {
         return [
