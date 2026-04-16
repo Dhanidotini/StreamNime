@@ -2,10 +2,8 @@
 
 namespace App\Filament\Resources\Episodes\Tables;
 
-use Filament\Actions\AssociateAction;
 use Filament\Tables\Table;
 use Filament\Actions\EditAction;
-use Filament\Actions\AttachAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -21,6 +19,8 @@ class EpisodesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->heading('Related Episodes')
+            ->description("Episode list which is related to the Anime")
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
@@ -53,6 +53,7 @@ class EpisodesTable
                     ),
             ])
             ->recordActions([
+                EditAction::make(),
                 DeleteAction::make(),
                 ForceDeleteAction::make(),
                 RestoreAction::make(),

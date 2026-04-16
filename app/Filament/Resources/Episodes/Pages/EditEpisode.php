@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Episodes\Pages;
 
 use App\Filament\Resources\Episodes\EpisodeResource;
+use App\Traits\HandleImageImports;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
@@ -10,6 +11,8 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditEpisode extends EditRecord
 {
+    use HandleImageImports;
+
     protected static string $resource = EpisodeResource::class;
 
     protected function getHeaderActions(): array
@@ -19,5 +22,10 @@ class EditEpisode extends EditRecord
             ForceDeleteAction::make(),
             RestoreAction::make(),
         ];
+    }
+
+    public function afterSave(): void
+    {
+        $this->processImageImport();
     }
 }

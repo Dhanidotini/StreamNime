@@ -7,7 +7,6 @@ use Filament\PanelProvider;
 use Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -31,8 +30,9 @@ class DashboardPanelProvider extends PanelProvider
             ->favicon(asset('logo.svg'))
             ->brandLogo(asset('logo.svg'))
             ->profile()
+            ->databaseNotifications()
             ->unsavedChangesAlerts()
-            ->spa(hasPrefetching: true)
+            ->spa()
             ->sidebarWidth('18rem')
             ->sidebarCollapsibleOnDesktop()
             ->collapsedSidebarWidth('4rem')

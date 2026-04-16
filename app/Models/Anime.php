@@ -24,8 +24,8 @@ class Anime extends Model implements HasMedia
     // Media Collection
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('posters');
-        $this->addMediaCollection('banners');
+        $this->addMediaCollection('posters')->singleFile();
+        $this->addMediaCollection('banners')->singleFile();
     }
 
     protected $fillable = [
