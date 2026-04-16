@@ -2,21 +2,21 @@
 
 namespace App\Filament\Resources\Animes;
 
-use UnitEnum;
-use BackedEnum;
-use App\Models\Anime;
-use Filament\Tables\Table;
-use Filament\Schemas\Schema;
-use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
+use App\Filament\Resources\Animes\Pages\CreateAnime;
 use App\Filament\Resources\Animes\Pages\EditAnime;
 use App\Filament\Resources\Animes\Pages\ListAnimes;
-use App\Filament\Resources\Animes\Pages\CreateAnime;
+use App\Filament\Resources\Animes\RelationManagers\EpisodesRelationManager;
 use App\Filament\Resources\Animes\Schemas\AnimeForm;
 use App\Filament\Resources\Animes\Tables\AnimesTable;
-use App\Filament\Resources\Animes\RelationManagers\EpisodesRelationManager;
+use App\Models\Anime;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class AnimeResource extends Resource
 {
@@ -44,7 +44,7 @@ class AnimeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            EpisodesRelationManager::class,
+            'episodes' => EpisodesRelationManager::class,
         ];
     }
     public static function getPages(): array
@@ -59,8 +59,8 @@ class AnimeResource extends Resource
     public static function getRecordRouteBindingEloquentQuery(): Builder
     {
         return parent::getRecordRouteBindingEloquentQuery()
-        ->withoutGlobalScopes([
-            SoftDeletingScope::class,
-        ]);
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }
