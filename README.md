@@ -2,16 +2,20 @@
 
 Website for streaming anime
 
+## Project details
+- Laravel v12
+- Filament v4
+- Horizon
+- S3 Support (Only MiniO).
+- Redis
+- MariaDB/MySQL
 
 ## Features
+- Image upload s3 (Poster & Banners).
+- Episode related Anime.
+- Genre, studios.
+- User permission.
 
-- Image upload (Poster & Banners)
-- Cross platform
-
-
-## Demo
-
-Live demo: https://streamnime.okutakun.my.id
 ## Run Locally
 
 Clone the project
@@ -31,6 +35,11 @@ Install dependencies
 ```bash
   composer install
   pnpm install
+```
+
+Set environment
+```bash
+  cp .env.example .env 
 ```
 
 Start the server
