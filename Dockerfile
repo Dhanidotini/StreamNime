@@ -2,7 +2,7 @@
 FROM node:25-alpine AS assets-builder
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN nom install -g pnpm && pnpm install
+RUN npm install -g pnpm && pnpm install
 COPY . .
 RUN pnpm run build
 
@@ -10,8 +10,13 @@ RUN pnpm run build
 FROM dunglas/frankenphp:php8.4-alpine AS runtime
 WORKDIR /app
 
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 # Install system dependencies & PHP Extension
-RUN install-php-extension \
+RUN install-php-extensions \
+    exif \
     ctype \
     curl \
     dom \
@@ -21,7 +26,7 @@ RUN install-php-extension \
     mbstring \
     openssl \
     pcre \
-    pro_mysql \
+    pdo_mysql \
     pdo_sqlite \
     session \
     tokenizer \
@@ -44,9 +49,6 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Set permission
 RUN chown -R www-data:www-data storage bootstrap/cache
-
-# Optimize laravel
-RUN php artisan optimize
 
 # Caddy / FrankenPHP config
 ENV SERVER_NAME=:80
