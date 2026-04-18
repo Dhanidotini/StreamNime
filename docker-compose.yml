@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: .
+      target: runtime
+
+    ports:
+      - "8080:80"
+      - "443:443"
+      - "443:443/udp"
+
+    volumes:
+      - ./storage:/app/storage
+      - caddy_data:/data
+      - caddy_config:/config
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    entrypoint: /usr/local/bin/entrypoint.sh
+
+  mysql:
+    image: mysql:8.4
+
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:8.4-alpine
+    command: redis-server --appendonly yes --replica-read-only no
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  db_data:
+  caddy_data:
+  caddy_config:
+  redis_data:

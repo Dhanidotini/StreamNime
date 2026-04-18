@@ -1,0 +1,54 @@
+# Stage 1: building asset
+FROM node:25-alpine AS assets-builder
+WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm && pnpm install
+COPY . .
+RUN pnpm run build
+
+# Stage 2: Runtime PHP
+FROM dunglas/frankenphp:php8.4-alpine AS runtime
+WORKDIR /app
+
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Install system dependencies & PHP Extension
+RUN install-php-extensions \
+    exif \
+    ctype \
+    curl \
+    dom \
+    fileinfo \
+    filter \
+    hash \
+    mbstring \
+    openssl \
+    pcre \
+    pdo_mysql \
+    pdo_sqlite \
+    session \
+    tokenizer \
+    xml \
+    redis \
+    pcntl \
+    bcmath \
+    gd \
+    zip \
+    opcache \
+    intl
+
+# Copy apllication code
+COPY . .
+COPY --from=assets-builder /app/public/build ./public/build
+
+# Install composer depedencies
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN composer install --no-dev --optimize-autoloader
+
+# Set permission
+RUN chown -R www-data:www-data storage bootstrap/cache
+
+# Caddy / FrankenPHP config
+ENV SERVER_NAME=:80
