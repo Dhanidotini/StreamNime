@@ -34,11 +34,13 @@ class AppServiceProvider extends ServiceProvider
         // Data of genres to be asscessable from anywhere
         View::composer('livewire.layouts.genres', GenreComposer::class);
 
-        if (app()->environment('production')) {
-            URL::forceScheme('https');
-
-            // Memaksa state request menjadi secure secara manual
-            request()->server->set('HTTPS', 'on');
+        $isLocal = request()->getHost() === 'localhost' || request()->getHost() === '127.0.0.1';
+        if (app()->environment('production') || app()->environment('staging')) {
+            if (!$isLocal) {
+                URL::forceScheme('https');
+            } else {
+                URL::forceScheme('http');
+            }
         }
     }
 }
