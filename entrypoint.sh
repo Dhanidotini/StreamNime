@@ -15,7 +15,7 @@ php artisan migrate --force
 echo "Refresh filament..."
 php artisan filament:upgrade
 
-echo "Make storage lin"
+echo "Make storage link"
 php artisan storage:link
 
 echo "Start FrankenPHP..."
