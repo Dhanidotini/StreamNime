@@ -16,28 +16,15 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Install system dependencies & PHP Extension
 RUN install-php-extensions \
-    exif \
-    ctype \
-    curl \
-    dom \
-    fileinfo \
-    filter \
-    hash \
-    mbstring \
-    openssl \
-    pcre \
     pdo_mysql \
-    pdo_sqlite \
-    session \
-    tokenizer \
-    xml \
     redis \
     pcntl \
     bcmath \
     gd \
     zip \
+    intl \
     opcache \
-    intl
+    exif
 
 # Copy apllication code
 COPY . .
