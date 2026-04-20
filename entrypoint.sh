@@ -6,7 +6,6 @@ echo "Running file entrypoint..."
 sleep 2
 
 echo "Reoptimize..."
-php artisan optimize:clear
 php artisan optimize
 
 echo "Migrating database..."
