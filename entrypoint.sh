@@ -5,9 +5,6 @@ echo "Running file entrypoint..."
 
 sleep 2
 
-echo "Reoptimize..."
-php artisan optimize
-
 echo "Migrating database..."
 php artisan migrate --force
 
