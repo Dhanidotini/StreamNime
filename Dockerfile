@@ -17,7 +17,7 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # Install system dependencies & PHP Extension
 RUN install-php-extensions \
     pdo_mysql \
-    redis \
+    redis-6.1.0 \
     pcntl \
     bcmath \
     gd \
