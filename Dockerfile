@@ -14,17 +14,11 @@ WORKDIR /app
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
 # Install system dependencies & PHP Extension
-RUN install-php-extensions \
-    pdo_mysql \
-    redis-6.1.0 \
-    pcntl \
-    bcmath \
-    gd \
-    zip \
-    intl \
-    opcache \
-    exif
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions pdo_mysql redis pcntl bcmath gd zip intl opcache exif
 
 # Copy apllication code
 COPY . .
