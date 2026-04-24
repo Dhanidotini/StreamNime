@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('anime_genre', function (Blueprint $table) {
             $table->id();
             $table->foreignId('anime_id')
-                ->constrained();
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->foreignId('genre_id')
-                ->constrained();
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }
