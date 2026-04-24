@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use App\Models\Genre;
 use App\Observers\GenreObserver;
-use Illuminate\Support\Facades\URL;
 use App\View\Composer\GenreComposer;
+use Filament\Support\Facades\FilamentTimezone;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Filament\Support\Facades\FilamentTimezone;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,13 +34,13 @@ class AppServiceProvider extends ServiceProvider
         // Data of genres to be asscessable from anywhere
         View::composer('livewire.layouts.genres', GenreComposer::class);
 
-        $isLocal = request()->getHost() === 'localhost' || request()->getHost() === '127.0.0.1';
-        if (app()->environment('production') || app()->environment('staging')) {
-            if (!$isLocal) {
-                URL::forceScheme('https');
-            } else {
-                URL::forceScheme('http');
-            }
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+
+            // Memaksa state request menjadi secure secara manual
+            request()->server->set('HTTPS', 'on');
+        } else {
+            URL::forceScheme('http');
         }
     }
 }

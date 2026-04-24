@@ -3,5 +3,6 @@ vendor
 .git
 .env
 Dockerfile
-docker-conpose.yml
+*-compose.*
 tests
+*.license
