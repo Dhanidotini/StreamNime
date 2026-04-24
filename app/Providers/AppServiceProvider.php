@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use App\Models\Genre;
 use App\Observers\GenreObserver;
-use Illuminate\Support\Facades\URL;
 use App\View\Composer\GenreComposer;
+use Filament\Support\Facades\FilamentTimezone;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Filament\Support\Facades\FilamentTimezone;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
 
             // Memaksa state request menjadi secure secara manual
             request()->server->set('HTTPS', 'on');
+        } else {
+            URL::forceScheme('http');
         }
     }
 }
