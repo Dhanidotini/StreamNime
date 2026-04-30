@@ -24,6 +24,7 @@ COPY . .
 COPY --from=frontend-builder /app/public/build ./public/build
 
 # Install PHP dependencies
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install --optimize-autoloader --no-dev
 
 # Permissions
