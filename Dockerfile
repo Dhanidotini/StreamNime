@@ -15,7 +15,7 @@ RUN pnpm run build
 FROM dunglas/frankenphp:1.12.2-php8.4
 
 # Install PHP extensions for Octane
-RUN install-php-extensions pcntl pdo_mysql mbstring bcmath gd zip intl opcache
+RUN install-php-extensions pcntl pdo_mysql mbstring bcmath gd zip intl opcache exif
 
 WORKDIR /app
 
