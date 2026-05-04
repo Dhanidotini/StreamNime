@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Genre;
+use App\Models\User;
+use App\Observers\UserObserver;
 use App\Observers\GenreObserver;
 use App\View\Composer\GenreComposer;
 use Filament\Support\Facades\FilamentTimezone;
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // watch what gonna happen while with genre
         Genre::observe(GenreObserver::class);
+        User::observe(UserObserver::class);
 
         // Set timezone for Filament
         FilamentTimezone::set('Asia/Jakarta');

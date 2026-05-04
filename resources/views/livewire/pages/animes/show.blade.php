@@ -63,19 +63,25 @@
                             @endforeach
                         </div>
                         <div class="flex flex-wrap gap-4 mt-2 justify-center md:justify-start">
-                            <button
+                            {{-- <button
                                 class="flex items-center gap-2 h-12 px-8 bg-primary hover:bg-blue-600 rounded-lg text-white font-bold transition-all shadow-lg shadow-blue-900/40">
                                 <span class="material-symbols-outlined">download</span>
                                 <span>Download Batch</span>
-                            </button>
-                            <button
-                                class="flex items-center gap-2 h-12 px-4 md:px-10 bg-secondborder-surface-dark hover:bg-[#323b67] rounded-lg text-white font-bold transition-all border border-surface-border">
+                            </button> --}}
+                            {{-- <button
+                                class="flex items-center gap-2 h-12 px-4 md:px-10 bg-secondborder-surface-dark hover:bg-surface-hover rounded-lg text-white font-bold transition-all border border-surface-border">
                                 <span class="material-symbols-outlined">play_arrow</span>
                                 <span>Watch Trailer</span>
-                            </button>
-                            <button
-                                class="flex items-center justify-center size-12 bg-secondborder-surface-dark hover:bg-[#323b67] rounded-lg text-white transition-all border border-surface-border">
-                                <span class="material-symbols-outlined">bookmark_border</span>
+                            </button> --}}
+                            <button type="button" wire:click="toggleBookmark" wire:loading.attr="disabled"
+                                title="{{ auth()->check() ? ($isBookmarked ? 'Hapus bookmark' : 'Tambah bookmark') : 'Masuk untuk menyimpan bookmark' }}"
+                                class="flex items-center justify-center size-12 bg-secondborder-surface-dark hover:bg-surface-hover rounded-lg text-primary transition-all border border-surface-border disabled:opacity-50 @if ($isBookmarked) ring-2 ring-primary/60 bg-primary! text-white! @endif">
+                                <span wire:loading.remove.delay wire:target="toggleBookmark"
+                                    class="material-symbols-outlined @if ($isBookmarked) fill-current @endif">
+                                    {{ $isBookmarked ? 'bookmark_check' : 'bookmark' }}
+                                </span>
+                                <span wire:loading.delay wire:target="toggleBookmark"
+                                    class="material-symbols-outlined animate-spin">progress_activity</span>
                             </button>
                         </div>
                     </div>
@@ -151,7 +157,7 @@
                         Show All Episodes
                     </button>
                 </section>
-                <section class="bg-surface-dark rounded-xl p-6 border border-surface-dark">
+                {{-- <section class="bg-surface-dark rounded-xl p-6 border border-surface-dark">
                     <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
                         <span class="w-1 h-6 bg-primary rounded-full"></span>
                         Community Reviews
@@ -173,7 +179,7 @@
                         </div>
                     </div>
 
-                </section>
+                </section> --}}
             </div>
             <div class="lg:col-span-4 space-y-8">
                 <div class="bg-surface-dark rounded-xl p-6 border border-surface-dark sticky top-24">
@@ -209,9 +215,9 @@
                             </span>
                         </div>
                     </div>
-                    <h3 class="text-lg font-bold text-white mt-8 mb-4">Related Anime</h3>
+                    {{-- <h3 class="text-lg font-bold text-white mt-8 mb-4">Related Anime</h3>
                     <div class="space-y-4">
-                        {{-- <a class="flex gap-3 group" href="#">
+                        <a class="flex gap-3 group" href="#">
                             <div class="w-16 h-24 rounded-lg overflow-hidden shrink-0">
                                 <img alt="Jujutsu Kaisen cover"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform"
@@ -227,8 +233,8 @@
                                     <span class="material-symbols-outlined text-[12px] fill-current">star</span> 8.9
                                 </div>
                             </div>
-                        </a> --}}
-                    </div>
+                        </a>
+                    </div> --}}
                 </div>
             </div>
         </div>

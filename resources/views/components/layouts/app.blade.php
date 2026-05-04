@@ -1,6 +1,8 @@
 @php
     $iconsName = [
-        'bookmark_border',
+        'bookmark_check',
+        'bookmark',
+        'close',
         'tune',
         'calendar_month',
         'theater_comedy',
