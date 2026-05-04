@@ -6,22 +6,26 @@ namespace App\Models;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, HasRoles, Notifiable;
+
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
     protected function casts(): array
     {
         return [
@@ -33,5 +37,11 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
+    }
+
+    /** @return BelongsToMany<Anime, $this> */
+    public function bookmark(): BelongsToMany
+    {
+        return $this->belongsToMany(Anime::class, 'bookmarks')->withTimestamps();
     }
 }

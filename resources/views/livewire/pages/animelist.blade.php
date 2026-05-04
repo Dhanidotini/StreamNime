@@ -255,13 +255,20 @@
                             <span class="material-symbols-outlined text-sm">chevron_left</span>
                         </button>
                     @endif
-                    {{-- @dd(is_string($paginateAnime->links()->elements)) --}}
-                    @foreach ($paginateAnime->links()->elements[0] as $element => $link)
-                        <button wire:key='paginator-{{ $element }}'
-                            @class([
-                                'flex items-center justify-center w-10 h-10 rounded-lg bg-card-dark text-white font-bold text-sm',
-                                'bg-primary' => $element == $paginateAnime->currentPage(),
-                            ])>{{ $element }}</button>
+                    @foreach ($paginateAnime->links()->elements as $segmentIndex => $segment)
+                        @if (is_array($segment))
+                            @foreach ($segment as $page => $url)
+                                <button wire:key="animelist-page-{{ $page }}-seg-{{ $segmentIndex }}"
+                                    wire:click="gotoPage({{ $page }}, '{{ $paginateAnime->getPageName() }}')"
+                                    @class([
+                                        'flex items-center justify-center w-10 h-10 rounded-lg bg-card-dark text-white font-bold text-sm',
+                                        'bg-primary' => $page == $paginateAnime->currentPage(),
+                                    ])>{{ $page }}</button>
+                            @endforeach
+                        @else
+                            <span wire:key="animelist-ellipsis-{{ $segmentIndex }}"
+                                class="flex items-center justify-center min-w-10 h-10 px-1 text-secondary text-sm font-bold select-none">{{ $segment }}</span>
+                        @endif
                     @endforeach
                     @if ($paginateAnime->hasMorePages())
                         <button wire:click="nextPage('{{ $paginateAnime->getPageName() }}')"
