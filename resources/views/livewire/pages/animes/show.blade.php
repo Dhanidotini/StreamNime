@@ -75,7 +75,7 @@
                             </button> --}}
                             <button type="button" wire:click="toggleBookmark" wire:loading.attr="disabled"
                                 title="{{ auth()->check() ? ($isBookmarked ? 'Hapus bookmark' : 'Tambah bookmark') : 'Masuk untuk menyimpan bookmark' }}"
-                                class="flex items-center justify-center size-12 bg-secondborder-surface-dark hover:bg-surface-hover rounded-lg text-primary transition-all border border-surface-border disabled:opacity-50 @if ($isBookmarked) ring-2 ring-primary/60 bg-primary! text-white! @endif">
+                                @class(['flex items-center justify-center size-12 bg-secondborder-surface-dark hover:bg-surface-hover rounded-lg text-primary transition-all border border-surface-border disabled:opacity-50', 'ring-2 ring-primary/60 bg-primary! text-white!' => $isBookmarked ])>
                                 <span wire:loading.remove.delay wire:target="toggleBookmark"
                                     class="material-symbols-outlined @if ($isBookmarked) fill-current @endif">
                                     {{ $isBookmarked ? 'bookmark_check' : 'bookmark' }}
