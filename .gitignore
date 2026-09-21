@@ -5,6 +5,12 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
+.pnpm-store
+**/caddy
+frankenphp
+frankenphp-worker.php
+Homestead.json
+Homestead.yaml
 /.fleet
 /.devcontainer
 /.idea
@@ -24,17 +30,3 @@
 /storage/pail
 /vendor
 /storage/media-library/*
-Homestead.json
-Homestead.yaml
-
-# Docker Sail
-compose.yaml
-/docker
-
-
-.pnpm-store
-*.license
-
-**/caddy
-frankenphp
-frankenphp-worker.php

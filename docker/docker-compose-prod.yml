@@ -1,0 +1,110 @@
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      target: development
+    container_name: streamnime-app
+    restart: unless-stopped
+    working_dir: /var/www
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../:/var/www
+    networks:
+      - streamnime-network
+    healthcheck:
+      test: [ "CMD-SHELL", "cgi-fcgi -bind -connect 127.0.0.1:9000 || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  queue:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      target: development
+    container_name: streamnime-queue
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan horizon
+    volumes:
+      - ../:/var/www
+    networks:
+      - streamnime-network
+    depends_on:
+      app:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  webserver:
+    image: nginx:alpine
+    container_name: streamnime-webserver
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ../:/var/www
+    networks:
+      - streamnime-network
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      app:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    container_name: streamnime-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-streamnime_db}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-rootpassword}
+      MYSQL_USER: ${DB_USERNAME:-streamnime_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-userpassword}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - streamnime-network
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -p${DB_PASSWORD:-rootpassword} || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  redis:
+    image: redis:alpine
+    container_name: streamnime-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - streamnime-network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+networks:
+  streamnime-network:
+    driver: bridge
+
+volumes:
+  db_data:
+  minio_data:
