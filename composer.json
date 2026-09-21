@@ -3,25 +3,28 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.4",
         "bezhansalleh/filament-shield": "^4.0",
         "filament/filament": "^4.3",
         "filament/spatie-laravel-media-library-plugin": "^4.3",
-        "laravel/framework": "^12.0",
-        "laravel/horizon": "*",
+        "laravel/framework": "^13.0",
+        "laravel/horizon": "^5.0",
         "laravel/octane": "^2.17",
-        "laravel/tinker": "^2.10.1",
+        "laravel/tinker": "^3.0",
         "league/flysystem-aws-s3-v3": "^3.31",
         "predis/predis": "^3.3",
         "symfony/http-client": "^8.0",
         "symfony/mailgun-mailer": "^8.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.16",
         "fakerphp/faker": "^1.23",
+        "laravel/boost": "^2.9",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.57",
@@ -78,13 +81,6 @@
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ]
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": [
-                "barryvdh/laravel-debugbar"
-            ]
-        }
     },
     "config": {
         "optimize-autoloader": true,
