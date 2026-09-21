@@ -22,34 +22,45 @@ class AnimeForm
     {
         return $schema
             ->components([
-                Tabs::make('Images')
+                Tabs::make('Poster Upload Method')
                     ->tabs([
-                        Tab::make('Poster')
+                        Tab::make('Media Upload')
                             ->schema([
                                 SpatieMediaLibraryFileUpload::make('posters')
+                                    ->name('')
                                     ->collection('posters')
                                     ->visibility('public')
                                     ->image()
                                     ->openable()
                                     ->moveFiles(),
+                            ]),
+                        Tab::make('URL Import')
+                            ->schema([
                                 TextInput::make('poster_image_url')
-                                    ->label('Upload poster image from Url')
+                                    ->label('Paste URL')
                                     ->url()
                                     ->dehydrated(false),
-                            ]),
-                        Tab::make('Banner')
+                            ])
+                    ]),
+                Tabs::make('Banner Upload Method')
+                    ->tabs([
+                        Tab::make('Media Upload')
                             ->schema([
                                 SpatieMediaLibraryFileUpload::make('banners')
+                                    ->name('')
                                     ->collection('banners')
                                     ->visibility('public')
                                     ->image()
                                     ->openable()
                                     ->moveFiles(),
+                            ]),
+                        Tab::make('URL Import')
+                            ->schema([
                                 TextInput::make('banner_image_url')
-                                    ->label('Upload banners image from Url')
+                                    ->label('Paste URL')
                                     ->url()
-                                    ->dehydrated(false),
-                            ])
+                                    ->dehydrated(false)
+                            ]),
                     ]),
                 Section::make('Main Information')
                     ->columns(1)
@@ -62,14 +73,6 @@ class AnimeForm
                             )),
                         TextInput::make('slug')
                             ->required(),
-                        Toggle::make('is_trending')
-                            ->onColor('primary')
-                            ->live(),
-                    ]),
-                Section::make('Additional Information')
-                    ->columnSpanFull()
-                    ->columns(2)
-                    ->schema([
                         Select::make('status')
                             ->required()
                             ->native(false)
@@ -87,6 +90,9 @@ class AnimeForm
                         TextInput::make('rating')
                             ->numeric()
                             ->default(null),
+                    ]),
+                Section::make('Additional Information')
+                    ->schema([
                         Select::make('type')
                             ->native(false)
                             ->options(TypeEnum::class)
@@ -100,7 +106,10 @@ class AnimeForm
                         Select::make('Studios')
                             ->multiple()
                             ->relationship('studios', 'name')
-                            ->preload()
+                            ->preload(),
+                        Toggle::make('is_trending')
+                            ->onColor('primary')
+                            ->live(),
                     ]),
                 RichEditor::make('synopsis')
                     ->default(null)
