@@ -7,7 +7,7 @@ FROM php:8.4-fpm-alpine AS base
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 RUN apk add --no-cache git curl zip unzip fcgi \
-    && install-php-extensions pdo_mysql intl zip bcmath gd pcntl redis
+    && install-php-extensions pdo_mysql intl zip bcmath gd exif pcntl redis
 
 WORKDIR /var/www
 
