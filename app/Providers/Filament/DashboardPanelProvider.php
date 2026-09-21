@@ -46,6 +46,7 @@ class DashboardPanelProvider extends PanelProvider
                     ->url('/', shouldOpenInNewTab: true),
                 NavigationItem::make('Horizon')
                     ->url('/horizon', shouldOpenInNewTab: true)
+                    ->hidden(fn() => auth()->user()->cannot('View:Horizon'))
                     ->icon('heroicon-o-bug-ant')
                     ->group('System'),
             ])
