@@ -4,21 +4,14 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
+use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Models\Bookmark;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Foundation\Auth\User as AuthUser;
 
 class BookmarkPolicy
 {
     use HandlesAuthorization;
-
-    protected function isSuperAdmin(AuthUser $authUser): bool
-    {
-        $role = config('filament-shield.super_admin.name', 'super_admin');
-
-        return method_exists($authUser, 'hasRole') && $authUser->hasRole($role);
-    }
-
+    
     public function viewAny(AuthUser $authUser): bool
     {
         return $authUser->can('ViewAny:Bookmark');
@@ -26,11 +19,7 @@ class BookmarkPolicy
 
     public function view(AuthUser $authUser, Bookmark $bookmark): bool
     {
-        if (! $authUser->can('View:Bookmark')) {
-            return false;
-        }
-
-        return $this->isSuperAdmin($authUser) || $bookmark->user_id === $authUser->id;
+        return $authUser->can('View:Bookmark');
     }
 
     public function create(AuthUser $authUser): bool
@@ -40,20 +29,12 @@ class BookmarkPolicy
 
     public function update(AuthUser $authUser, Bookmark $bookmark): bool
     {
-        if (! $authUser->can('Update:Bookmark')) {
-            return false;
-        }
-
-        return $this->isSuperAdmin($authUser) || $bookmark->user_id === $authUser->id;
+        return $authUser->can('Update:Bookmark');
     }
 
     public function delete(AuthUser $authUser, Bookmark $bookmark): bool
     {
-        if (! $authUser->can('Delete:Bookmark')) {
-            return false;
-        }
-
-        return $this->isSuperAdmin($authUser) || $bookmark->user_id === $authUser->id;
+        return $authUser->can('Delete:Bookmark');
     }
 
     public function restore(AuthUser $authUser, Bookmark $bookmark): bool
@@ -85,4 +66,5 @@ class BookmarkPolicy
     {
         return $authUser->can('Reorder:Bookmark');
     }
+
 }
