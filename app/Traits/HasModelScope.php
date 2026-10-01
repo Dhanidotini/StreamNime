@@ -26,4 +26,13 @@ trait HasModelScope
     {
         return $this->mediaUrl('posters', 'medium');
     }
+
+    public function getDateReleaseAttribute(): string
+    {
+        if (isset($this->release_date)) {
+            return $this->release_date->diffForHumans();
+        } else {
+            return 'Yo gak tau';
+        }
+    }
 }

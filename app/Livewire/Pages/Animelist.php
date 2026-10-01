@@ -57,7 +57,7 @@ class Animelist extends Component
         return Anime::query()
             ->when($this->searchStatus, function (Builder $query) {
                 if ($this->searchStatus == "all") {
-                    $query->whereIn("status", StatusEnum::all());
+                    $query->whereIn("status", StatusEnum::cases());
                 } else {
                     $query->where("status", $this->searchStatus);
                 }

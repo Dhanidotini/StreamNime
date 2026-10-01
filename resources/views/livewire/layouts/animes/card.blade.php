@@ -31,7 +31,7 @@
             </h3>
             <p class="mt-1 text-xxs text-gray-400">
                 {{ isset($anime->episodes) ? 'Episode ' . count($anime->episodes) . ' • ' : '' }}
-                {{ $anime->release_date->diffForHumans() }}</p>
+                {{ $anime->date_release }}</p>
         </div>
     </div>
 </a>

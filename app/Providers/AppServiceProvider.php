@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Models\Genre;
 use App\Models\User;
-use App\Observers\UserObserver;
 use App\Observers\GenreObserver;
+use App\Observers\UserObserver;
 use App\View\Composer\GenreComposer;
 use Filament\Support\Facades\FilamentTimezone;
 use Illuminate\Support\Facades\URL;
@@ -42,8 +42,6 @@ class AppServiceProvider extends ServiceProvider
 
             // Memaksa state request menjadi secure secara manual
             request()->server->set('HTTPS', 'on');
-        } else {
-            URL::forceScheme('http');
         }
     }
 }

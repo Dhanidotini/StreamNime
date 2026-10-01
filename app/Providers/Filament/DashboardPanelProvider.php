@@ -36,6 +36,7 @@ class DashboardPanelProvider extends PanelProvider
             ->sidebarWidth('18rem')
             ->sidebarCollapsibleOnDesktop()
             ->collapsedSidebarWidth('4rem')
+            ->passwordReset()
             ->registration()
             ->path('dashboard')
             ->login()

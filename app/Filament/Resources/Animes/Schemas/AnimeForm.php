@@ -2,19 +2,20 @@
 
 namespace App\Filament\Resources\Animes\Schemas;
 
-use Filament\Schemas\Schema;
 use App\Enums\Anime\StatusEnum;
 use App\Enums\Enums\Anime\TypeEnum;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
-use Filament\Schemas\Components\Utilities\Set;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 
 class AnimeForm
 {
@@ -24,7 +25,7 @@ class AnimeForm
             ->components([
                 Tabs::make('Poster Upload Method')
                     ->tabs([
-                        Tab::make('Media Upload')
+                        Tab::make('Poster Upload')
                             ->schema([
                                 SpatieMediaLibraryFileUpload::make('posters')
                                     ->name('')
@@ -40,11 +41,11 @@ class AnimeForm
                                     ->label('Paste URL')
                                     ->url()
                                     ->dehydrated(false),
-                            ])
+                            ]),
                     ]),
                 Tabs::make('Banner Upload Method')
                     ->tabs([
-                        Tab::make('Media Upload')
+                        Tab::make('Banner Upload')
                             ->schema([
                                 SpatieMediaLibraryFileUpload::make('banners')
                                     ->name('')
@@ -59,7 +60,7 @@ class AnimeForm
                                 TextInput::make('banner_image_url')
                                     ->label('Paste URL')
                                     ->url()
-                                    ->dehydrated(false)
+                                    ->dehydrated(false),
                             ]),
                     ]),
                 Section::make('Main Information')
@@ -68,7 +69,7 @@ class AnimeForm
                         TextInput::make('title')
                             ->required()
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn(?string $state, Set $set) => (
+                            ->afterStateUpdated(fn (?string $state, Set $set) => (
                                 $set('slug', str()->slug($state))
                             )),
                         TextInput::make('slug')
@@ -80,13 +81,12 @@ class AnimeForm
                             ->selectablePlaceholder(false)
                             ->live(true)
                             ->default('draft'),
-                        DateTimePicker::make('release_date')
+                        DatePicker::make('release_date')
                             ->format('Y-m-d H:i:s')
-                            ->displayFormat('Y-m-d H:i:s')
+                            ->displayFormat('Y-m-d')
+                            ->placeholder(now())
                             ->native(true)
-                            ->required()
-                            ->live(true)
-                            ->default(now('Asia/Jakarta')),
+                            ->live(true),
                         TextInput::make('rating')
                             ->numeric()
                             ->default(null),

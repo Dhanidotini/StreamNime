@@ -6,6 +6,7 @@ use App\Models\Genre;
 use App\Models\Episode;
 use App\Traits\HasModelScope;
 use App\Enums\Anime\StatusEnum;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
 use App\Enums\Enums\Anime\TypeEnum;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Anime extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasModelScope, SoftDeletes, HasStandardImageConversions {
+    use InteractsWithMedia, HasModelScope, SoftDeletes, HasFactory;
+    use HasStandardImageConversions {
         HasStandardImageConversions::registerMediaConversions insteadof InteractsWithMedia;
     }
 
@@ -28,16 +30,7 @@ class Anime extends Model implements HasMedia
         $this->addMediaCollection('banners')->singleFile();
     }
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'synopsis',
-        'status',
-        'release_date',
-        'rating',
-        'type',
-        'is_trending'
-    ];
+    protected $guarded = ['id'];
 
     protected $casts = [
         'is_trending' => 'boolean',

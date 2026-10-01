@@ -15,19 +15,27 @@ return new class extends Migration
     {
         Schema::create('animes', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_trending')->default(false);
-            $table->string('title');
-            $table->string('slug')
+            $table->boolean(column: 'is_trending')
+                ->default(false);
+            $table->string(column: 'title');
+            $table->string(column: 'title_native')
+                ->nullable();
+            $table->string(column: 'title_english')
+                ->nullable();
+            $table->json(column: 'titles')
+                ->nullable();
+            $table->string(column: 'slug')
                 ->unique()
                 ->index();
-            $table->text('synopsis')
+            $table->text(column: 'synopsis')
                 ->nullable();
-            $table->string('status');
+            $table->string(column: 'status')
+                ->default(StatusEnum::Unknown);
             $table->dateTime('release_date')
                 ->nullable();
-            $table->float('rating')
+            $table->float(column: 'rating', precision: 2)
                 ->nullable();
-            $table->string('type')
+            $table->string(column: 'type')
                 ->default(TypeEnum::Unknown);
             $table->timestamps();
         });

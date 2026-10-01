@@ -14,8 +14,7 @@
             {{--  --}}
             <div class="relative overflow-hidden rounded-2xl bg-surface-darker border border-surface-dark">
                 <div class="absolute inset-0 z-0">
-                    <div class="w-full h-full bg-cover bg-center opacity-20 blur-xl"
-                        data-alt="Abstract blurry anime background"
+                    <div class="w-full h-full bg-cover bg-center opacity-80 blur-sm"
                         style="background-image: url('{{ $anime->banner_url }}');">
                     </div>
                     <div class="absolute inset-0 bg-linear-to-t from-[#111422] via-[#111422]/80 to-transparent"></div>
@@ -24,9 +23,9 @@
                     <div class="shrink-0 mx-auto md:mx-0">
                         <div
                             class="w-60 aspect-2/3 rounded-xl overflow-hidden shadow-2xl shadow-black/50 border border-surface-dark">
-                            <img alt="Kimetsu no Yaiba Poster Art"
+                            <img alt="{{ $anime->title }}"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                                data-alt="Anime character portrait with sword" src="{{ $anime->poster_url }}" />
+                                src="{{ $anime->poster_url }}" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-6 flex-1 text-center md:text-left">
@@ -137,7 +136,7 @@
                                         @if ($episode->release_date)
                                             <span class="text-secondary text-xs">•</span>
                                             <span
-                                                class="text-secondary text-xs">{{ $episode->release_date->diffForHumans() }}</span>
+                                                class="text-secondary text-xs">{{ $episode->date_release }}</span>
                                         @endif
                                     </div>
                                     <h4
@@ -200,7 +199,7 @@
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
                             <span class="text-secondary text-sm">Aired</span>
                             <span
-                                class="text-white text-sm font-medium">{{ $anime->release_date->diffForHumans() }}</span>
+                                class="text-white text-sm font-medium">{{ $anime->date_release }}</span>
                         </div>
                         <div class="flex justify-between items-center py-2 border-b border-surface-dark last:border-0">
                             <span class="text-secondary text-sm">Studio</span>

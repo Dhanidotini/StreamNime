@@ -233,7 +233,7 @@
                             <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-secondary">
                                 <span>{{ $anime->status->name }}</span>
                                 <span class="w-1 h-1 rounded-full bg-slate-400 dark:bg-gray-600"></span>
-                                <span>{{ $anime->release_date->year }}</span>
+                                <span>{{ $anime->release_date->year ?? '' }}</span>
                             </div>
                             <div class="flex gap-1 mt-1 flex-wrap">
                                 @foreach ($anime->genres as $genre)

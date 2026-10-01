@@ -7,7 +7,7 @@ FROM php:8.4-fpm-alpine AS base
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 RUN apk add --no-cache git curl zip unzip fcgi \
-    && install-php-extensions pdo_mysql intl zip bcmath gd exif pcntl redis
+    && install-php-extensions pdo_mysql intl zip bcmath gd exif pcntl redis \
 
 WORKDIR /var/www
 
@@ -56,9 +56,36 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-di
 # =================================================================
 FROM base AS production
 
+RUN apk add --no-cache nginx
+
+RUN rm -rf /etc/nginx/http.d/default.conf
+
+RUN echo 'server { \
+    listen 80; \
+    root /var/www/public; \
+    index index.php; \
+    charset utf-8; \
+    location / { \
+        try_files $uri $uri/ /index.php?$query_string; \
+    } \
+    location ~ \.php$ { \
+        fastcgi_pass 127.0.0.1:9000; \
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name; \
+        include fastcgi_params; \
+        fastcgi_hide_header X-Powered-By; \
+    } \
+    location ~ /\.(?!well-known).* { \
+        deny all; \
+    } \
+}' > /etc/nginx/http.d/laravel.conf
+
 COPY --from=build-assets /app/public/build /var/www/public/build
 COPY --from=build-vendor /app/vendor /var/www/vendor
 COPY . .
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
-EXPOSE 9000
-CMD ["php-fpm"]
+RUN echo '#!/bin/sh' > /start.sh \
+    && echo 'php-fpm -D' >> /start.sh \
+    && echo 'nginx -g "daemon off;"' >> /start.sh \
+    && chmod +x /start.sh
+EXPOSE 80
+CMD ["./start.sh"]
